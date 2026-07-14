@@ -1,0 +1,71 @@
+[ { "category": "Yemekhane", "expected_detail": "Hijyen/Temizlik", "tone":
+"ACIL_TEHLIKE", "expected_priority": 5, "text": "Yemeklerin içinden kesici metal parçaları çıktı, acil müdahale edilmezse birisi ciddi şekilde yaralanacak." }, {
+"category": "Yemekhane", "expected_detail": "Ekipman/Fiziksel Alan", "tone":
+"ACIL_TEHLIKE", "expected_priority": 5, "text": "Mutfak bölümünde yoğun bir gaz kokusu var, patlama riski nedeniyle alanın derhal boşaltılması gerekiyor." }, {
+"category": "Yemekhane", "expected_detail": "Yemek Kalitesi", "tone":
+"ACIL_TEHLIKE", "expected_priority": 5, "text": "Öğle yemeğinden sonra tüm departmanda zehirlenme belirtileri başladı, yemek dağıtımı hemen durdurulmalı."
+}, { "category": "Yemekhane", "expected_detail": "Personel Davranışı", "tone":
+"ACIL_TEHLIKE", "expected_priority": 5, "text": "Bir personel çalışanlara karşı fiziksel saldırıda bulundu, güvenlik ekiplerinin acilen gelmesini rica ediyoruz." }, { "category": "Yemekhane", "expected_detail": "Hijyen/Temizlik",
+"tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Yemekhane deposunda büyük bir haşere istilası görüldü, gıda güvenliği tamamen ortadan kalkmış durumda." }, { "category": "Yemekhane", "expected_detail": "Yemek Kalitesi",
+"tone": "STANDART_SIKAYET", "expected_priority": 3, "text": "Yemekler sürekli soğuk servis ediliyor ve lezzet kalitesi son birkaç haftadır iyice düştü." }, {
+"category": "Yemekhane", "expected_detail": "Sıra/Kalabalık", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Öğle saatlerinde sıra o kadar uzuyor ki yemek yiyip masadan kalkmamız bir saati geçiyor." }, {
+"category": "Yemekhane", "expected_detail": "Menü Çeşitliliği", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Haftalık menü listesi sürekli kendini tekrar ediyor, daha dengeli ve çeşitli yemekler bekliyoruz." },
+{ "category": "Yemekhane", "expected_detail": "Hijyen/Temizlik", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Tepsiler ve çatalların üzerinde deterjan kalıntıları var, temizliğe daha fazla özen gösterilmesi gerekiyor." }, { "category": "Yemekhane", "expected_detail": "Ekipman/Fiziksel Alan", "tone": "STANDART_SIKAYET", "expected_priority": 3, "text":
+"Yemekhanedeki havalandırma sistemi düzgün çalışmıyor, içerideki ağır koku ofislere kadar yayılıyor." }, { "category": "Yemekhane", "expected_detail":
+"Menü Çeşitliliği", "tone": "DILEK_ONERI", "expected_priority": 2, "text":
+"Vejetaryen çalışanlar için ana yemek alternatiflerinin çeşitlendirilmesi çok faydalı olacaktır." }, { "category": "Yemekhane", "expected_detail":
+"Sıra/Kalabalık", "tone": "DILEK_ONERI", "expected_priority": 2, "text":
+"Kalabalığı azaltmak için departmanların yemek saatlerinin 15'er dakika arayla düzenlenmesini öneriyorum." }, { "category": "Yemekhane", "expected_detail":
+"Yemek Kalitesi", "tone": "DILEK_ONERI", "expected_priority": 2, "text":
+"Yemeklerin kalori ve içerik bilgilerinin yemekhane girişindeki ekranlarda paylaşılmasını rica ederiz." }, { "category": "Yemekhane", "expected_detail":
+"Ekipman/Fiziksel Alan", "tone": "DILEK_ONERI", "expected_priority": 2, "text":
+"Yemekhane çıkışına taze meyve veya sağlıklı atıştırmalık köşesi eklenmesi motivasyonu artırabilir." }, { "category": "Yemekhane", "expected_detail":
+"Personel Davranışı", "tone": "DILEK_ONERI", "expected_priority": 2, "text":
+"Servis personelinin yoğun saatlerde daha sakin kalabilmesi için iletişim eğitimi verilmesini öneriyoruz." }, { "category": "Servis", "expected_detail":
+"Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoför aracı aşırı hızlı ve tehlikeli kullanıyor, kaza yapmamız an meselesi; acil müdahale edilmeli." }, { "category": "Servis", "expected_detail":
+"Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Aracın frenlerinden çok kötü sesler geliyor ve durmakta zorlanıyor, bu aracın trafiğe çıkması riskli." }, { "category": "Servis", "expected_detail": "Şoför Davranışı", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoförün uykusuz ve bitkin olduğu gözleniyor, direksiyon başında uyuklaması hepimizin canını tehlikeye atıyor." }, { "category": "Servis", "expected_detail":
+"Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Servis aracının otomatik kapısı hareket halindeyken kendiliğinden açılıyor, ciddi bir düşme tehlikesi var." }, { "category": "Servis", "expected_detail":
+"Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoför seyir halindeyken sürekli telefonla video izliyor, dikkati tamamen dağılmış durumda; kontrol edilmeli." }, { "category": "Servis", "expected_detail":
+"Saat/Gecikme", "tone": "STANDART_SIKAYET", "expected_priority": 3, "text":
+"Sabah servisi her gün en az 15 dakika geç geliyor ve bu durum mesai saatlerimizi aksatıyor." }, { "category": "Servis", "expected_detail": "Araç Konforu", "tone": "STANDART_SIKAYET", "expected_priority": 3, "text": "Aracın kliması çalışmıyor, bu sıcaklarda yolculuk yapmak dayanılmaz hale geldi." }, {
+"category": "Servis", "expected_detail": "Güzergah/Durak", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Şoför belirlenen güzergahın dışına çıkıyor ve bazı durakları pas geçerek personeli yolda bırakıyor." }, {
+"category": "Servis", "expected_detail": "Şoför Davranışı", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Şoför bey yolculara karşı çok kaba davranıyor ve her sabah asık bir suratla karşılaşıyoruz." }, {
+"category": "Servis", "expected_detail": "Araç Konforu", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Koltuk döşemeleri çok kirli ve araç içerisinde ağır bir koku var, temizliğe dikkat edilmiyor." }, {
+"category": "Servis", "expected_detail": "Saat/Gecikme", "tone": "DILEK_ONERI",
+"expected_priority": 2, "text": "Servis araçlarının nerede olduğunu anlık görebileceğimiz bir mobil uygulama hayata geçirilebilir." }, { "category":
+"Servis", "expected_detail": "Güzergah/Durak", "tone": "DILEK_ONERI",
+"expected_priority": 2, "text": "Yeni işe başlayan arkadaşlar için mevcut güzergaha bir durak daha eklenmesi ulaşımı kolaylaştıracaktır." }, { "category":
+"Servis", "expected_detail": "Araç Konforu", "tone": "DILEK_ONERI",
+"expected_priority": 2, "text": "Uzun mesafe giden servis araçlarına ücretsiz kablosuz internet hizmeti eklenmesi güzel bir gelişim olur." }, { "category":
+"Servis", "expected_detail": "Güzergah/Durak", "tone": "DILEK_ONERI",
+"expected_priority": 2, "text": "Akşam trafiğini azaltmak adına servis çıkış saatlerinin 10 dakika erkene alınmasını öneriyorum." }, { "category": "Servis",
+"expected_detail": "Araç Konforu", "tone": "DILEK_ONERI",
+"expected_priority": 2, "text": "Servislerde emniyet kemeri kontrollerinin daha düzenli yapılması güvenlik standartlarımızı yükseltir." }, { "category": "Teknik Destek", "expected_detail": "Sistem Performansı", "tone": "ACIL_TEHLIKE",
+"expected_priority": 5, "text": "Ana sunucu odasından dumanlar çıkıyor ve sistemler kapandı, acil yangın müdahalesi gerekebilir." }, { "category": "Teknik Destek", "expected_detail": "İnternet/Ağ Sorunu", "tone": "ACIL_TEHLIKE",
+"expected_priority": 5, "text": "Şirket genelinde internet tamamen kesildi, şu an hiçbir operasyon yapılamıyor; iş tamamen durdu." }, { "category": "Teknik Destek", "expected_detail": "Yazılım Sorunu", "tone": "ACIL_TEHLIKE",
+"expected_priority": 5, "text": "Müşteri veritabanındaki kayıtlar hızla siliniyor, siber bir saldırı olabilir; sistemleri acilen kapatın." }, {
+"category": "Teknik Destek", "expected_detail": "Donanım Sorunu", "tone":
+"ACIL_TEHLIKE", "expected_priority": 5, "text": "Bilgisayar kasası elektrik kaçırıyor, personeli elektrik çarptı; acil teknik kontrol ve sağlık yardımı gerekiyor." }, { "category": "Teknik Destek", "expected_detail": "Erişim/Yetki Sorunu", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Sistem admin şifreleri ele geçirilmiş ve tüm yetkilerimiz iptal edilmiş, verilerimize erişemiyoruz." }, { "category": "Teknik Destek", "expected_detail": "Sistem Performansı", "tone": "STANDART_SIKAYET", "expected_priority": 3, "text":
+"Bilgisayarlar o kadar yavaş ki en basit bir dosyayı açmak bile dakikalarca beklememize sebep oluyor." }, { "category": "Teknik Destek", "expected_detail":
+"Yazılım Sorunu", "tone": "STANDART_SIKAYET", "expected_priority": 3, "text":
+"Kullandığımız ERP yazılımı günde birkaç kez hata vererek kapanıyor, çalışmalarımız sürekli bölünüyor." }, { "category": "Teknik Destek",
+"expected_detail": "İnternet/Ağ Sorunu", "tone": "STANDART_SIKAYET",
+"expected_priority": 3, "text": "Toplantı odalarındaki kablosuz ağ bağlantısı çok zayıf, sunumlar sırasında internet sürekli kopuyor." }, { "category":
+"Teknik Destek", "expected_detail": "Donanım Sorunu", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Departmanımızdaki yazıcı kağıt sıkıştırıyor ve mürekkep akıtıyor, çıktı alamıyoruz." }, { "category":
+"Teknik Destek", "expected_detail": "Erişim/Yetki Sorunu", "tone":
+"STANDART_SIKAYET", "expected_priority": 3, "text": "Yeni projem için gerekli olan dosya klasörlerine erişim talebim iki gündür onaylanmadı." }, { "category":
+"Teknik Destek", "expected_detail": "Sistem Performansı", "tone": "DILEK_ONERI",
+"expected_priority": 2, "text": "Sistem hızını artırmak için eski model bilgisayarların RAM kapasitelerinin yükseltilmesini öneriyorum." }, {
+"category": "Teknik Destek", "expected_detail": "Erişim/Yetki Sorunu", "tone":
+"DILEK_ONERI", "expected_priority": 2, "text": "Şifre sıfırlama işlemlerinin daha hızlı yapılabilmesi için bir self-servis portalı kurulabilir." }, {
+"category": "Teknik Destek", "expected_detail": "Yazılım Sorunu", "tone":
+"DILEK_ONERI", "expected_priority": 2, "text": "Günlük iş akışımızı kolaylaştıracak yeni bir proje yönetim yazılımının test edilmesini rica ediyoruz." }, { "category": "Teknik Destek", "expected_detail": "Donanım Sorunu", "tone": "DILEK_ONERI", "expected_priority": 2, "text": "Çalışanların fiziksel sağlığı için daha ergonomik klavye ve mouse seçenekleri sunulabilir."
+}, { "category": "Teknik Destek", "expected_detail": "İnternet/Ağ Sorunu",
+"tone": "DILEK_ONERI", "expected_priority": 2, "text": "Ziyaretçiler için güvenli bir konuk Wi-Fi ağı oluşturulması bilgi güvenliği açısından iyi olacaktır." } ]

@@ -1,0 +1,270 @@
+[
+  {
+    "text": "-",
+    "selected_category": "Diğer",
+    "expected_stage": "INVALID_INPUT",
+    "expected_action": "REJECT",
+    "note": "Sadece sembol içeriyor."
+  },
+  {
+    "text": "a",
+    "selected_category": "Diğer",
+    "expected_stage": "INVALID_INPUT",
+    "expected_action": "REJECT",
+    "note": "Anlamlı metin sayılacak kadar harf içermiyor."
+  },
+  {
+    "text": "select * from users",
+    "selected_category": "Diğer",
+    "expected_stage": "INVALID_INPUT",
+    "expected_action": "REJECT",
+    "note": "SQL komutu gibi görünüyor."
+  },
+  {
+    "text": "<script>alert(1)</script>",
+    "selected_category": "Diğer",
+    "expected_stage": "INVALID_INPUT",
+    "expected_action": "REJECT",
+    "note": "Script ifadesi içeriyor."
+  },
+  {
+    "text": "73526 22646 23§ 73646 222£ $$$ f5y68g6dhfft4573526",
+    "selected_category": "Diğer",
+    "expected_stage": "INVALID_INPUT",
+    "expected_action": "REJECT",
+    "note": "Sayı ve sembol yoğunluğu çok yüksek."
+  },
+  {
+    "text": "asdfghjklqwertyuiopzxcvbnm",
+    "selected_category": "Diğer",
+    "expected_stage": "INVALID_INPUT",
+    "expected_action": "REJECT",
+    "note": "Rastgele karakter dizisi gibi."
+  },
+  {
+    "text": "hello world",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "FEEDBACK_RELEVANCE",
+    "expected_action": "WARN_OR_REJECT",
+    "note": "Teknik olarak metin ama kurumsal geribildirim değil."
+  },
+  {
+    "text": "test test",
+    "selected_category": "Diğer",
+    "expected_stage": "FEEDBACK_RELEVANCE",
+    "expected_action": "WARN_OR_REJECT",
+    "note": "Test mesajı; gerçek geribildirim değil."
+  },
+  {
+    "text": "merhaba",
+    "selected_category": "Diğer",
+    "expected_stage": "FEEDBACK_RELEVANCE",
+    "expected_action": "WARN_OR_REJECT",
+    "note": "Selamlaşma, geri bildirim değil."
+  },
+  {
+    "text": "bugün üşüdük",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Çalışma Ortamı",
+    "expected_detail_behavior": "SPECIFIC_OR_GENERAL",
+    "note": "Kısa ama gerçek çalışan bildirimi."
+  },
+  {
+    "text": "açım",
+    "selected_category": "Yemekhane",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Yemekhane",
+    "expected_detail_behavior": "GENERAL_IF_LOW_CONFIDENCE",
+    "note": "Tek kelimelik ama anlamlı olabilir; reddedilmemeli."
+  },
+  {
+    "text": "sıcak",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Çalışma Ortamı",
+    "expected_detail_behavior": "GENERAL_IF_LOW_CONFIDENCE",
+    "note": "Kısa ve bağlama ihtiyaç duyan ama gerçek bildirim olabilir."
+  },
+  {
+    "text": "aynı şey yine oldu",
+    "selected_category": "Servis",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT_WITH_MANUAL_REVIEW",
+    "expected_category": "Servis",
+    "expected_detail_behavior": "GENERAL_IF_LOW_CONFIDENCE",
+    "note": "Bağlam yetersiz; reddedilmemeli ama manuel inceleme gerektirmeli."
+  },
+  {
+    "text": "yemekler çok yemek",
+    "selected_category": "Yemekhane",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT_WITH_LOW_CONFIDENCE",
+    "expected_category": "Yemekhane",
+    "expected_detail_behavior": "GENERAL_IF_LOW_CONFIDENCE",
+    "note": "Kötü yazılmış ama kullanıcı bildirimi olabilir."
+  },
+  {
+    "text": "Yemekhanedeki tabaklar kirli geliyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CATEGORY_ALIGNMENT",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Yemekhane",
+    "expected_detail_behavior": "Hijyen/Temizlik",
+    "note": "Kullanıcı yanlış kategori seçmiş; sistem kategori önerisi sunmalı."
+  },
+  {
+    "text": "Servis şoförü kırmızı ışıkta geçti ve çok hızlı kullanıyor.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CATEGORY_ALIGNMENT",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Servis",
+    "expected_detail_behavior": "Güvenlik/Risk_OR_Şoför Davranışı",
+    "note": "Servis mesajı yanlış ana kategoriyle gönderilmiş."
+  },
+  {
+    "text": "Bilgisayar açılmıyor, işe başlayamıyorum.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Teknik Destek",
+    "expected_detail_behavior": "Donanım Sorunu_OR_Sistem Performansı",
+    "note": "Geçerli teknik destek bildirimi."
+  },
+  {
+    "text": "Tuvalette sabun kalmamış.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Ortak Alan",
+    "expected_detail_behavior": "Tuvalet/Sarf Malzeme_OR_Hijyen/Temizlik",
+    "note": "Kısa ama geçerli ortak alan bildirimi."
+  },
+  {
+    "text": "Yangın tüpünün kontrol tarihi geçmiş görünüyor.",
+    "selected_category": "Güvenlik",
+    "expected_stage": "PRIORITY_SCORING",
+    "expected_action": "ACCEPT",
+    "expected_category": "Güvenlik",
+    "expected_detail_behavior": "Acil Durum/Ekipman",
+    "expected_priority_behavior": "CRITICAL",
+    "note": "Kritik güvenlik bildirimi."
+  },
+  {
+    "text": "Servis yine gecikti.",
+    "selected_category": "Servis",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Servis",
+    "expected_detail_behavior": "Saat/Gecikme",
+    "note": "Kısa ve net servis bildirimi."
+  },
+  {
+    "text": "Ofis çok gürültülü, çalışmakta zorlanıyoruz.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Çalışma Ortamı",
+    "expected_detail_behavior": "Gürültü",
+    "note": "Geçerli çalışma ortamı bildirimi."
+  },
+  {
+    "text": "İzin talebimin hangi aşamada olduğunu göremiyorum.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "İK / Personel İşleri",
+    "expected_detail_behavior": "İzin/Süreç Bilgilendirme",
+    "note": "Geçerli İK bildirimi."
+  },
+  {
+    "text": "Geri bildirimlerin durumunu uygulamadan takip edebilsek iyi olur.",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Öneri ve İyileştirme",
+    "expected_detail_behavior": "Çalışan Deneyimi",
+    "note": "Geçerli öneri bildirimi."
+  },
+  {
+    "text": "Hem servis saatleri hem de yemekhane sırası hakkında sorun bildirmek istiyorum.",
+    "selected_category": "Diğer",
+    "expected_stage": "CATEGORY_ALIGNMENT",
+    "expected_action": "ACCEPT_WITH_MANUAL_REVIEW",
+    "expected_category": "Diğer",
+    "expected_detail_behavior": "Çoklu Konu",
+    "note": "Birden fazla ana kategori içeriyor; tek kategoriye zorlanmamalı."
+  },
+  {
+    "text": "---",
+    "selected_category": "Diğer",
+    "expected_stage": "INVALID_INPUT",
+    "expected_action": "REJECT",
+    "note": "Sadece tire karakterlerinden oluşan mesaj kaydedilmemeli."
+  },
+  {
+    "text": "selam",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "FEEDBACK_RELEVANCE",
+    "expected_action": "WARN_OR_REJECT",
+    "note": "Selamlaşma kurumsal geribildirim olarak kabul edilmemeli."
+  },
+  {
+    "text": "ürünlerin üzerindeki yazılar okunmuyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Teknik Destek",
+    "expected_detail_behavior": "Donanım Sorunu",
+    "note": "Teknik/donanımsal okunabilirlik sorunu yazılım hatası sayılmamalı."
+  },
+  {
+    "text": "kablolardaki aşınma canımı sıkıyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Teknik Destek",
+    "expected_detail_behavior": "Güvenlik/Risk",
+    "note": "Kablo aşınması güvenlik riski olarak önceliklendirilmeli."
+  },
+  {
+    "text": "masaların ayakları sallanıyor",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Çalışma Ortamı",
+    "expected_detail_behavior": "Ergonomi",
+    "note": "Masa/sandalye gibi çalışma alanı ekipmanları ergonomi detayına gitmeli."
+  },
+  {
+    "text": "daha kolay su içmek için su sebili almalıyız",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "DETAIL_CLASSIFICATION",
+    "expected_action": "ACCEPT",
+    "expected_category": "Öneri ve İyileştirme",
+    "expected_detail_behavior": "Çalışan Deneyimi",
+    "expected_priority_behavior": "SUGGESTION",
+    "note": "Öneri kategorisindeki iyileştirme mesajı öneri olarak kabul edilmeli."
+  },
+  {
+    "text": "servis şoförü kırmızı ışıkta geçti ve çok hızlı kullanıyor, can güvenliğimiz tehlikede",
+    "selected_category": "Servis",
+    "expected_stage": "PRIORITY_SCORING",
+    "expected_action": "ACCEPT",
+    "expected_category": "Servis",
+    "expected_detail_behavior": "Güvenlik/Risk_OR_Şoför Davranışı",
+    "expected_priority_behavior": "CRITICAL",
+    "note": "Can güvenliği ve kırmızı ışık ifadesi kritik servis riski olarak ele alınmalı."
+  },
+  {
+    "text": "tuvaletler leş gibi kokuyor kimse yıkamıyor",
+    "selected_category": "Servis",
+    "expected_stage": "CATEGORY_ALIGNMENT",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Ortak Alan",
+    "note": "Kullanıcı servis seçse bile tuvalet/hijyen mesajı ortak alan kategorisine önerilmeli."
+  }
+]

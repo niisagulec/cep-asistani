@@ -1,0 +1,324 @@
+[
+  {
+    "category": "Servis",
+    "nlp_detail": "Güzergah/Durak",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Akşam servisini süren kaptan yolları hiç bellemedi, eve giderken gereksiz dolaştırdı."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Güzergah/Durak",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Servis şoförü güzergahı karıştırıyor, her gün başka yoldan gidip bizi geç bırakıyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Güzergah/Durak",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Kaptan durağı bilmiyor gibi davranıyor, bazen bizi almadan geçiyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Araç Konforu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Servis koltuklarının derileri yırtılmış, her yer toz içinde ve oturacak düzgün yer yok."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Araç Konforu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Akşam eve dönerken servis aracının içi çok kirli oluyor, koltuklara oturmak istemiyoruz."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Şoför Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Servis kaptanı yolcularla ters konuşuyor, soru sorunca azarlıyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Isıtma/Soğutma",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Pres hanenin içi Adana sıcağı gibi yanıyor, pervaneler hiç fayda etmiyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Isıtma/Soğutma",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Montaj hattında kışın ortasında Sibirya soğuğu var, montla çalışıyoruz."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Isıtma/Soğutma",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Üretim alanı çok sıcak, kan ter içinde kalıyoruz ve çalışmak zorlaşıyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Ergonomi",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Masaların ayakları sallanıyor, yazı yazarken sürekli oynuyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Ergonomi",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Sandalyeler çok rahatsız, bütün gün oturunca belimiz ağrıyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Fiziksel Düzen",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Bahçedeki çardakların altı çekirdek kabuğu ve pet şişe dolu, oturacak yer kalmıyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Fiziksel Düzen",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Dinlenme alanında çöpler birikiyor, iki dakika hava almaya çıkınca pislikten geri dönüyoruz."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Tuvalet/Sarf Malzeme",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Lavabolarda sabun kalmamış, peçeteler de sürekli bitiyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "İş Güvenliği Riski",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Banttaki robot kolunun sensörü sapıttı, millete doğru hızla dönüyor ve kimse yaklaşamıyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "İş Güvenliği Riski",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Üretim hattındaki makine kontrolsüz hareket ediyor, biri yaralanmadan acil durdurulmalı."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "İş Güvenliği Riski",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Robot kolu çalışanların olduğu tarafa savruluyor, bu şekilde çalışmak çok tehlikeli."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Güvenlik görevlisi çalışanlara sosyal medyadan istek atıyor, bu durum rahatsız edici."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Kapıdaki güvenlik personeli bazı çalışanlara uygunsuz şekilde mesaj gönderiyor."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Postabaşı adamına göre muamele yapıyor, kendi memleketlisini kayırıyor."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Usta zor işleri hep aynı kişilere yüklüyor, bu haksızlık artık çözülmeli."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Vardiya sorumlusu bazı çalışanları kolluyor, diğerlerine sürekli ağır iş veriyor."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Çalışan Deneyimi",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Daha kolay su içmek için üretim alanına su sebili koymalıyız."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Süreç İyileştirme",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Geri bildirimlerin durumunu uygulamadan takip edebilsek süreç daha şeffaf olur."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Donanım Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Kaynak makinesi artık miyadını doldurmuş, üflesen dağılacak. Parça basarken sürekli ark yapıyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Donanım Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "3. hattaki matkap resmen nalları dikti, tetik basmıyor ve gövdeden kıvılcım atıyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Donanım Sorunu",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Pres makinesinin oradan geçerken garip elektrik yükü hissediliyor, dokunmaya korkuyoruz."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Donanım Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Yazıcı sürekli kağıt sıkıştırıyor, çıktı almaya çalışınca içeride kağıt parçalıyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Isıtma/Soğutma",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Sevkiyat deposu değil resmen Erzurum ayazı, elimiz ayağımız buz kesti."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Isıtma/Soğutma",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Depoda hava buz gibi, titremekten koli bandını bile tutamıyoruz."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Isıtma/Soğutma",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Montaj hattı çok soğuk, eldivenle bile parmaklarımız donuyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Ergonomi",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Masaların ayakları sallanıyor, çalışırken ekran ve klavye sürekli oynuyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Güvenlik/Risk",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Vardiyanın arabasını kullanan dayı kendini ralli pistinde sanıyor, virajlara çok sert giriyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Güvenlik/Risk",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Servis şoförü çok hızlı kullanıyor, arkada herkes birbirinin üstüne savruluyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Şoför Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Servisçi yol boyunca sigara içiyor, uyarınca da yolculara ters ters konuşuyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Güzergah/Durak",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Akşam servisini süren kaptan yolu hiç bilmiyor gibi, her gün bizi başka yerlerden dolaştırıyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Fiziksel Düzen",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Bahçedeki çardakların altı çekirdek kabuğundan ve pet şişelerden geçilmiyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Koridordaki çöp kovaları taşmış, kokudan durulmuyor ve sinek kaynıyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Fiziksel Düzen",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Dinlenme alanındaki masaların üstü boş bardak ve ambalaj dolu, oturacak temiz yer kalmıyor."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Çalışan Deneyimi",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Daha kolay su içmek için üretim alanına su sebili almalıyız."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Çalışan Deneyimi",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Çay ocağına uzak kalan hatlar için küçük su sebilleri eklenirse iyi olur."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Süreç İyileştirme",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Servis araçlarının konumunu uygulamadan anlık görebilsek bekleme süresi azalır."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Bizim postabaşı adamına göre muamele yapıyor, kendi tanıdıklarını kolluyor."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Ali usta çalışanlara saçma sapan işler veriyor, herkese eşit davranmıyor."
+  },
+  {
+    "category": "Yemekhane",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Yemekhanedeki tabaklar lekeli geliyor, masalar da yeterince temiz değil."
+  },
+  {
+    "category": "Yemekhane",
+    "nlp_detail": "Yemek Kalitesi",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Yemeklerin tadı çok kötü, etler bazen pişmemiş gibi geliyor."
+  }
+]

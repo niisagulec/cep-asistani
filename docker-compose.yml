@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: cep_asistani_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cep_asistani_db
+      POSTGRES_USER: cep_asistani_user
+      POSTGRES_PASSWORD: cep_asistani_pass
+    ports:
+      - "55432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
