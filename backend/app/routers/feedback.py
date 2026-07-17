@@ -644,4 +644,36 @@ def update_feedback_for_admin(
     db.commit()
     db.refresh(feedback)
 
+    if feedback.employee_id:
+        try:
+            from app.services.notification_service import create_and_send_notification
+            employee_user_id = feedback.employee.user_id
+
+            noti_title = "Geri Bildirim Güncellemesi"
+            noti_body = "Geri bildiriminiz hakkında yeni bir gelişme var."
+
+            status_map = {
+                "IN_REVIEW": ("Geri Bildirim İnceleniyor", "Geri bildiriminiz yetkililer tarafından incelenmeye alındı."),
+                "RESOLVED": ("Geri Bildirim Çözüldü", "Geri bildiriminiz başarıyla çözümlendi."),
+                "CANCELLED": ("Geri Bildirim İptal Edildi", "Geri bildiriminiz iptal edildi.")
+            }
+
+            if "status" in update_data and update_data["status"] in status_map:
+                noti_title, noti_body = status_map[update_data["status"]]
+            elif "admin_note" in update_data and update_data["admin_note"]:
+                noti_title = "Geri Bildiriminiz Yanıtlandı"
+                noti_body = "Geri bildiriminiz hakkında İK yetkilisi bir yanıt paylaştı."
+
+            create_and_send_notification(
+                db=db,
+                user_id=employee_user_id,
+                type="FEEDBACK_STATUS",
+                title=noti_title,
+                body=noti_body,
+                data={"screen": "feedback", "request_id": feedback.id, "status": feedback.status},
+                send_push=True
+            )
+        except Exception as e:
+            pass
+
     return build_feedback_response(feedback, show_sender=not feedback.is_anonymous)

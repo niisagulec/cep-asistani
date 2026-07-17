@@ -34,6 +34,8 @@ const errorMessages = {
   'Attendance correction time cannot be in the future':
     'Gelecekteki bir saat için düzeltme talebi oluşturamazsın.',
   'Attendance record not found': 'Düzeltilecek mesai kaydı bulunamadı.',
+  'Leave request overlaps with an existing leave request':
+    'Seçtiğin tarihler mevcut bir izin talebinle çakışıyor.',
 };
 
 export function getApiErrorMessage(error) {

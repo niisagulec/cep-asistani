@@ -1,5 +1,5 @@
-import { useEffect, useState, useMemo } from 'react';
-import { Modal, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Animated, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { EmptyState, LoadingState } from '../components/ScreenStates';
 import { getApiErrorMessage } from '../services/api';
@@ -9,10 +9,11 @@ import {
   peekMobileCache,
 } from '../services/mobileService';
 import { useTheme } from '../context/ThemeContext';
+import { getInclusiveDayCount, getLocalIsoDate, isMeaningfulText } from '../utils/validation';
 
 const leaveTypes = [
   { value: 'ANNUAL', label: 'Yıllık izin' },
-  { value: 'SICK', label: 'Hastalık / Rapor' },
+  { value: 'HEALTH', label: 'Hastalık / Rapor' },
   { value: 'EXCUSE', label: 'Mazeret izni' },
   { value: 'UNPAID', label: 'Ücretsiz izin' },
 ];
@@ -48,7 +49,7 @@ function formatDisplayDate(value) {
   return `${day}.${month}.${year}`;
 }
 
-export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete }) {
+export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete, module }) {
   const { colors } = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
 
@@ -57,7 +58,6 @@ export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete }
   const [leaveType, setLeaveType] = useState('ANNUAL');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [totalDays, setTotalDays] = useState('');
   const [reason, setReason] = useState('');
   const [loading, setLoading] = useState(cachedLeaves === null);
   const [submitting, setSubmitting] = useState(false);
@@ -67,12 +67,26 @@ export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete }
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [visibleCount, setVisibleCount] = useState(7);
   const [expandedLeaves, setExpandedLeaves] = useState(() => new Set());
+  const [formViewportHeight, setFormViewportHeight] = useState(0);
+  const [formContentHeight, setFormContentHeight] = useState(0);
+  const formScrollY = useRef(new Animated.Value(0)).current;
 
   const filteredLeaves = useMemo(
     () => leaves.filter((leave) => statusFilter === 'ALL' || leave.status === statusFilter),
     [leaves, statusFilter],
   );
   const visibleLeaves = filteredLeaves.slice(0, visibleCount);
+  const parsedStartDate = toIsoDate(startDate);
+  const parsedEndDate = toIsoDate(endDate);
+  const calculatedTotalDays = getInclusiveDayCount(parsedStartDate, parsedEndDate);
+  const scrollThumbHeight = formContentHeight > formViewportHeight
+    ? Math.max((formViewportHeight / formContentHeight) * formViewportHeight, 32)
+    : formViewportHeight;
+  const scrollThumbOffset = formScrollY.interpolate({
+    inputRange: [0, Math.max(formContentHeight - formViewportHeight, 1)],
+    outputRange: [0, Math.max(formViewportHeight - scrollThumbHeight, 0)],
+    extrapolate: 'clamp',
+  });
 
   function selectStatusFilter(value) {
     setStatusFilter(value);
@@ -101,12 +115,34 @@ export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete }
       });
   }, [refreshToken]);
 
+  useEffect(() => {
+    if (!loading && module?.targetId && leaves.length > 0) {
+      const targetId = Number(module.targetId);
+      setExpandedLeaves(new Set([targetId]));
+      const index = filteredLeaves.findIndex((l) => l.id === targetId);
+      if (index !== -1 && index >= visibleCount) {
+        setVisibleCount(index + 1);
+      }
+    }
+  }, [loading, module?.targetId, leaves, filteredLeaves, visibleCount]);
+
   async function handleSubmit() {
-    const days = Number(totalDays.replace(',', '.'));
     const isoStartDate = toIsoDate(startDate);
     const isoEndDate = toIsoDate(endDate);
-    if (!isoStartDate || !isoEndDate || !days) {
-      setError('Tarihleri GG.AA.YYYY biçiminde ve gün sayısını eksiksiz girmelisin.');
+    if (!isoStartDate || !isoEndDate) {
+      setError('Tarihleri GG.AA.YYYY biçiminde eksiksiz girmelisin.');
+      return;
+    }
+    if (isoStartDate < getLocalIsoDate()) {
+      setError('Geçmiş tarihli izin talebi oluşturamazsın.');
+      return;
+    }
+    if (isoEndDate < isoStartDate) {
+      setError('Bitiş tarihi başlangıç tarihinden önce olamaz.');
+      return;
+    }
+    if (!isMeaningfulText(reason)) {
+      setError('İzin nedenini anlamlı ve açıklayıcı bir metin olarak yazmalısın.');
       return;
     }
     setSubmitting(true);
@@ -117,12 +153,10 @@ export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete }
         leave_type: leaveType,
         start_date: isoStartDate,
         end_date: isoEndDate,
-        total_days: days,
-        reason: reason.trim() || null,
+        reason: reason.trim(),
       });
       setStartDate('');
       setEndDate('');
-      setTotalDays('');
       setReason('');
       setNotice('İzin talebin oluşturuldu.');
       await loadLeaves(true);
@@ -225,7 +259,21 @@ export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete }
                 <Text style={styles.closeButtonText}>Kapat</Text>
               </TouchableOpacity>
             </View>
-            <ScrollView contentContainerStyle={styles.formContent} showsVerticalScrollIndicator={false}>
+            <View style={styles.formScrollArea} onLayout={(event) => setFormViewportHeight(event.nativeEvent.layout.height)}>
+              <Animated.ScrollView
+                style={styles.formScroll}
+                contentContainerStyle={styles.formContent}
+                showsVerticalScrollIndicator={false}
+                keyboardShouldPersistTaps="handled"
+                nestedScrollEnabled
+                bounces
+                scrollEventThrottle={16}
+                onContentSizeChange={(_, height) => setFormContentHeight(height)}
+                onScroll={Animated.event(
+                  [{ nativeEvent: { contentOffset: { y: formScrollY } } }],
+                  { useNativeDriver: true },
+                )}
+              >
               <Text style={styles.label}>İzin türü</Text>
               <View style={styles.chips}>
                 {leaveTypes.map((type) => (
@@ -239,15 +287,28 @@ export function LeaveScreen({ currentUser, refreshToken = 0, onRefreshComplete }
                 <TextInput value={startDate} onChangeText={(value) => setStartDate(formatDateInput(value))} keyboardType="number-pad" maxLength={10} placeholder="15.07.2026" placeholderTextColor="#94A3B8" style={styles.dateInput} />
                 <TextInput value={endDate} onChangeText={(value) => setEndDate(formatDateInput(value))} keyboardType="number-pad" maxLength={10} placeholder="18.07.2026" placeholderTextColor="#94A3B8" style={styles.dateInput} />
               </View>
-              <Text style={styles.label}>Toplam gün</Text>
-              <TextInput value={totalDays} onChangeText={setTotalDays} keyboardType="decimal-pad" placeholder="Örn. 4" placeholderTextColor="#94A3B8" style={styles.input} />
+              {calculatedTotalDays ? (
+                <View style={styles.totalDaysPreview}>
+                  <Text style={styles.totalDaysLabel}>Toplam izin süresi</Text>
+                  <Text style={styles.totalDaysValue}>{calculatedTotalDays} gün</Text>
+                </View>
+              ) : null}
               <Text style={styles.label}>Açıklama</Text>
               <TextInput value={reason} onChangeText={setReason} multiline placeholder="İzin nedenini kısaca yazabilirsin." placeholderTextColor="#94A3B8" style={[styles.input, styles.reason]} />
               {!!error && <Text style={styles.error}>{error}</Text>}
               <TouchableOpacity disabled={submitting} style={[styles.button, submitting && styles.disabled]} onPress={handleSubmit}>
                 <Text style={styles.buttonText}>{submitting ? 'Oluşturuluyor...' : 'İzin talebi oluştur'}</Text>
               </TouchableOpacity>
-            </ScrollView>
+              <View style={styles.formBottomSpace} />
+              </Animated.ScrollView>
+              {formContentHeight > formViewportHeight ? (
+                <View pointerEvents="none" style={styles.scrollTrack}>
+                  <Animated.View
+                    style={[styles.scrollThumb, { height: scrollThumbHeight, transform: [{ translateY: scrollThumbOffset }] }]}
+                  />
+                </View>
+              ) : null}
+            </View>
           </View>
         </View>
       </Modal>
@@ -267,11 +328,16 @@ const getStyles = (colors) => StyleSheet.create({
   launcherArrow: { color: colors.primary, fontSize: 30, fontWeight: '700' },
   noticeBox: { padding: 13, borderRadius: 16, backgroundColor: '#ECFDF5', color: '#047857', fontSize: 13, fontWeight: '800' },
   modalBackdrop: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: 20, backgroundColor: 'rgba(15, 23, 42, 0.35)' },
-  modalCard: { width: '100%', maxWidth: 430, maxHeight: '86%', paddingHorizontal: 18, paddingTop: 20, paddingBottom: 20, borderRadius: 28, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
+  modalCard: { width: '100%', maxWidth: 430, height: '52%', paddingHorizontal: 18, paddingTop: 20, paddingBottom: 20, borderRadius: 28, backgroundColor: colors.card, borderWidth: 1, borderColor: colors.border },
   modalHeader: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, marginBottom: 4 },
   closeButton: { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, backgroundColor: colors.background },
   closeButtonText: { color: colors.primary, fontSize: 12, fontWeight: '900' },
-  formContent: { paddingBottom: 10 },
+  formScrollArea: { flex: 1, position: 'relative' },
+  formScroll: { flex: 1 },
+  formContent: { paddingRight: 10 },
+  formBottomSpace: { height: 90 },
+  scrollTrack: { position: 'absolute', top: 0, right: 0, bottom: 0, width: 4, borderRadius: 2, backgroundColor: colors.border },
+  scrollThumb: { width: 4, borderRadius: 2, backgroundColor: colors.primary },
   formDescription: { color: colors.muted, fontSize: 12, fontWeight: '700', marginTop: 4 },
   label: { color: colors.text, fontSize: 14, fontWeight: '900', marginBottom: 8, marginTop: 5 },
   formTitle: { color: colors.text, fontSize: 19, fontWeight: '900', marginBottom: 10 },
@@ -282,6 +348,9 @@ const getStyles = (colors) => StyleSheet.create({
   activeChipText: { color: '#FFFFFF' },
   dateRow: { flexDirection: 'row', gap: 8 },
   dateInput: { flex: 1, height: 48, paddingHorizontal: 11, borderRadius: 15, backgroundColor: colors.background, borderWidth: 1, borderColor: colors.border, color: colors.text, fontWeight: '700' },
+  totalDaysPreview: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 14, borderRadius: 16, backgroundColor: colors.softBlue, marginTop: 10, marginBottom: 8 },
+  totalDaysLabel: { color: colors.muted, fontSize: 13, fontWeight: '800' },
+  totalDaysValue: { color: colors.primary, fontSize: 15, fontWeight: '900' },
   input: { height: 48, paddingHorizontal: 12, borderRadius: 15, backgroundColor: colors.background, borderWidth: 1, borderColor: colors.border, color: colors.text, fontWeight: '700', marginBottom: 8 },
   reason: { minHeight: 90, paddingTop: 12, textAlignVertical: 'top' },
   button: {

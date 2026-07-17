@@ -7,6 +7,7 @@ from app.routers import auth
 from app.routers import feedback
 from app.routers import menu
 from app.routers import shuttle
+from app.routers import notification
 
 app = FastAPI(title="Cep Asistanı API")
 
@@ -27,6 +28,7 @@ app.include_router(auth.router)
 app.include_router(feedback.router)
 app.include_router(menu.router)
 app.include_router(shuttle.router)
+app.include_router(notification.router)
 
 
 @app.get("/health")

@@ -15,6 +15,9 @@ import { getCurrentUser, logout } from './src/services/authService';
 import { clearMobileCache, prefetchMobileData } from './src/services/mobileService';
 import { clearAccessToken, getAccessToken } from './src/services/tokenStorage';
 import { ThemeProvider, useTheme } from './src/context/ThemeContext';
+import { registerDeviceToken, deregisterDeviceToken, getUnreadNotificationsCount, getNotifications } from './src/services/notificationService';
+import { registerBackgroundFetchAsync, unregisterBackgroundFetchAsync } from './src/services/backgroundFetchService';
+import * as Notifications from 'expo-notifications';
 
 export default function App() {
   return (
@@ -32,7 +35,62 @@ function MainApp() {
   const [currentUser, setCurrentUser] = useState(null);
   const [isSessionLoading, setIsSessionLoading] = useState(true);
   const [selectedModule, setSelectedModule] = useState(null);
+  const [unreadCount, setUnreadCount] = useState(0);
   const screenTransition = useRef(new Animated.Value(1)).current;
+
+  const lastNotificationIdRef = useRef(null);
+
+  async function refreshUnreadCount() {
+    if (!currentUser) return;
+    try {
+      const count = await getUnreadNotificationsCount();
+      setUnreadCount(count);
+
+      if (count > 0) {
+        // Retrieve latest unread notifications list
+        const unreadList = await getNotifications(1, 5, 'unread');
+        if (unreadList && unreadList.length > 0) {
+          const maxId = Math.max(...unreadList.map((n) => n.id));
+
+          // Set initial ID reference silently on startup
+          if (lastNotificationIdRef.current === null) {
+            lastNotificationIdRef.current = maxId;
+            return;
+          }
+
+          // If a new, higher notification ID appears, trigger a local push banner!
+          if (maxId > lastNotificationIdRef.current) {
+            const newItems = unreadList.filter((n) => n.id > lastNotificationIdRef.current);
+            for (const noti of newItems) {
+              await Notifications.scheduleNotificationAsync({
+                content: {
+                  title: noti.title,
+                  body: noti.body,
+                  data: noti.data || {},
+                  sound: true,
+                },
+                trigger: null, // deliver immediately
+              });
+            }
+            lastNotificationIdRef.current = maxId;
+          }
+        }
+      } else {
+        lastNotificationIdRef.current = 0;
+      }
+    } catch (e) {
+      console.log('Error polling live notifications:', e);
+    }
+  }
+
+  useEffect(() => {
+    if (!currentUser || currentUser.must_change_password) return;
+
+    refreshUnreadCount();
+
+    const interval = setInterval(refreshUnreadCount, 15000);
+    return () => clearInterval(interval);
+  }, [currentUser]);
 
   useEffect(() => {
     let isMounted = true;
@@ -69,7 +127,39 @@ function MainApp() {
   useEffect(() => {
     if (currentUser && !currentUser.must_change_password) {
       prefetchMobileData();
+      registerDeviceToken();
+      registerBackgroundFetchAsync();
+      Notifications.requestPermissionsAsync().catch((err) => {
+        console.warn('Could not request notification permissions:', err);
+      });
     }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (!currentUser) return;
+
+    const responseSubscription = Notifications.addNotificationResponseReceivedListener((response) => {
+      const data = response.notification.request.content.data;
+      if (data && data.screen) {
+        const screenToModuleKey = {
+          leave: 'leave',
+          attendance: 'attendance',
+          feedback: 'feedback',
+          shifts: 'shifts',
+        };
+        const moduleKey = screenToModuleKey[data.screen];
+        if (moduleKey) {
+          const matchedModule = modules.find((m) => m.key === moduleKey);
+          if (matchedModule) {
+            setSelectedModule(matchedModule);
+          }
+        }
+      }
+    });
+
+    return () => {
+      responseSubscription.remove();
+    };
   }, [currentUser]);
 
   const filteredModules = useMemo(() => {
@@ -86,6 +176,8 @@ function MainApp() {
   }, [searchText]);
 
   async function handleLogout() {
+    await deregisterDeviceToken().catch(() => {});
+    await unregisterBackgroundFetchAsync().catch(() => {});
     await logout();
     clearMobileCache();
     setCurrentUser(null);
@@ -209,10 +301,17 @@ function MainApp() {
             module={selectedModule}
             currentUser={currentUser}
             onBack={() => animateScreenChange(() => setSelectedModule(null))}
+            onOpenModule={handleOpenModule}
+            onRefreshComplete={refreshUnreadCount}
           />
         ) : null}
         <View style={[styles.tabScreen, (selectedModule || activeTab !== 'home') && styles.hiddenTab]}>
-          <HomeScreen currentUser={currentUser} onOpenModule={handleOpenModule} />
+          <HomeScreen
+            currentUser={currentUser}
+            onOpenModule={handleOpenModule}
+            unreadCount={unreadCount}
+            onRefreshUnreadCount={refreshUnreadCount}
+          />
         </View>
         <View style={[styles.tabScreen, (selectedModule || activeTab !== 'discover') && styles.hiddenTab]}>
           <DiscoverScreen

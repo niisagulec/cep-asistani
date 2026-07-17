@@ -47,6 +47,7 @@ ALLOWED_ATTENDANCE_STATUSES = {"PENDING", "APPROVED", "REJECTED"}
 ALLOWED_LEAVE_TYPES = {"ANNUAL", "HEALTH", "EXCUSE", "UNPAID"}
 ALLOWED_LEAVE_STATUSES = {"PENDING", "APPROVED", "REJECTED"}
 ATTENDANCE_SCAN_COOLDOWN_SECONDS = 60
+MAX_CORRECTION_AGE_DAYS = 30
 ISTANBUL_TIMEZONE = ZoneInfo("Europe/Istanbul")
 
 
@@ -138,6 +139,16 @@ def validate_date_range(start_date: date, end_date: date) -> None:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="End date cannot be earlier than start date",
+        )
+
+
+def validate_leave_dates(start_date: date, end_date: date) -> None:
+    validate_date_range(start_date, end_date)
+    today = datetime.now(ISTANBUL_TIMEZONE).date()
+    if start_date < today:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Geçmiş tarihli izin talebi oluşturulamaz.",
         )
 
 
@@ -484,10 +495,16 @@ def create_attendance_correction(
     if requested_time.tzinfo is None:
         requested_time = requested_time.replace(tzinfo=ISTANBUL_TIMEZONE)
     requested_time = requested_time.astimezone(timezone.utc)
-    if requested_time > datetime.now(timezone.utc):
+    now = datetime.now(timezone.utc)
+    if requested_time > now:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Attendance correction time cannot be in the future",
+        )
+    if requested_time < now - timedelta(days=MAX_CORRECTION_AGE_DAYS):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Yalnızca son 30 güne ait mesai kayıtları için düzeltme talebi oluşturulabilir.",
         )
 
     attendance_record = None
@@ -518,6 +535,7 @@ def create_attendance_correction(
     db.add(correction)
     db.commit()
     db.refresh(correction)
+
     return build_correction_response(correction)
 
 
@@ -642,6 +660,27 @@ def review_attendance_correction(
     db.commit()
     db.refresh(correction)
 
+    try:
+        from app.services.notification_service import create_and_send_notification
+        status_tr = "onaylandı" if new_status == "APPROVED" else "reddedildi"
+        employee_user_id = correction.employee.user_id
+
+        body_text = f"{correction.requested_time.strftime('%d.%m.%Y %H:%M')} tarihli mesai düzeltme talebiniz İK tarafından {status_tr}."
+        if payload.review_note:
+            body_text += f" Not: {payload.review_note}"
+
+        create_and_send_notification(
+            db=db,
+            user_id=employee_user_id,
+            type="CORRECTION_STATUS",
+            title=f"Düzeltme Talebi {status_tr.capitalize()}",
+            body=body_text,
+            data={"screen": "attendance", "request_id": correction.id, "status": new_status},
+            send_push=True
+        )
+    except Exception as e:
+        pass
+
     return build_correction_response(correction)
 
 
@@ -664,7 +703,7 @@ def create_leave_request(
             detail="Invalid leave type",
         )
 
-    validate_date_range(payload.start_date, payload.end_date)
+    validate_leave_dates(payload.start_date, payload.end_date)
 
     overlapping_leave = (
         db.query(LeaveRequest)
@@ -687,7 +726,7 @@ def create_leave_request(
         leave_type=leave_type,
         start_date=payload.start_date,
         end_date=payload.end_date,
-        total_days=payload.total_days,
+        total_days=(payload.end_date - payload.start_date).days + 1,
         reason=payload.reason,
         status="PENDING",
     )
@@ -777,6 +816,27 @@ def review_leave_request(
 
     db.commit()
     db.refresh(leave)
+
+    try:
+        from app.services.notification_service import create_and_send_notification
+        status_tr = "onaylandı" if new_status == "APPROVED" else "reddedildi"
+        employee_user_id = leave.employee.user_id
+
+        body_text = f"{leave.start_date.strftime('%d.%m.%Y')} tarihli izin talebiniz İK tarafından {status_tr}."
+        if payload.review_note:
+            body_text += f" Not: {payload.review_note}"
+
+        create_and_send_notification(
+            db=db,
+            user_id=employee_user_id,
+            type="LEAVE_STATUS",
+            title=f"İzin Talebi {status_tr.capitalize()}",
+            body=body_text,
+            data={"screen": "leave", "request_id": leave.id, "status": new_status},
+            send_push=True
+        )
+    except Exception as e:
+        pass
 
     return build_leave_response(leave)
 

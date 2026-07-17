@@ -35,7 +35,7 @@ function formatDate(value) {
   }).format(new Date(value));
 }
 
-export function FeedbackScreen({ refreshToken = 0, onRefreshComplete }) {
+export function FeedbackScreen({ refreshToken = 0, onRefreshComplete, module }) {
   const { colors, isDark } = useTheme();
   const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
 
@@ -101,6 +101,16 @@ export function FeedbackScreen({ refreshToken = 0, onRefreshComplete }) {
         onRefreshComplete?.();
       });
   }, [refreshToken]);
+
+  useEffect(() => {
+    if (!loading && module?.targetId && feedbacks.length > 0) {
+      const targetId = Number(module.targetId);
+      const targetFeedback = feedbacks.find((f) => f.id === targetId);
+      if (targetFeedback) {
+        setSelectedFeedback(targetFeedback);
+      }
+    }
+  }, [loading, module?.targetId, feedbacks]);
 
   const handleMessageChange = (val) => {
     setMessage(val);

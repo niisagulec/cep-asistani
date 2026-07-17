@@ -390,16 +390,18 @@ def count_vowels(message: str) -> int:
 def looks_like_random_character_sequence(message: str) -> bool:
     normalized_message = normalize_message(message)
     letter_count = count_letters(normalized_message)
+    compact_message = re.sub(r"\s+", "", normalized_message)
 
-    if letter_count < 18:
+    if letter_count < 6:
         return False
 
     vowel_ratio = count_vowels(normalized_message) / letter_count
     has_long_consonant_run = bool(
-        re.search(r"[bcçdfgğhjklmnprsştvyzqxw]{8,}", normalized_message)
+        re.search(r"[bcçdfgğhjklmnprsştvyzqxw]{6,}", normalized_message)
     )
+    has_repeated_fragment = bool(re.fullmatch(r"(.{2,4})\1{1,}", compact_message))
 
-    return vowel_ratio < 0.18 or has_long_consonant_run
+    return vowel_ratio < 0.12 or has_long_consonant_run or has_repeated_fragment
 
 
 def contains_forbidden_expression(message: str) -> bool:

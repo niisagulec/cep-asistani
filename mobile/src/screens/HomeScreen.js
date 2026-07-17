@@ -4,7 +4,8 @@ import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOp
 import { quickActions } from '../constants/navigation';
 import { getTodayMenu, peekMobileCache } from '../services/mobileService';
 import { useTheme } from '../context/ThemeContext';
-import { FeedbackIcon, CafeteriaIcon, ShuttleIcon, LeaveIcon } from '../components/CustomIcons';
+import { FeedbackIcon, CafeteriaIcon, ShuttleIcon, LeaveIcon, BellIcon } from '../components/CustomIcons';
+import { getUnreadNotificationsCount } from '../services/notificationService';
 
 function getGreetingName(currentUser) {
   if (currentUser?.first_name) {
@@ -23,7 +24,7 @@ function getFormattedDate() {
   }).format(new Date());
 }
 
-export function HomeScreen({ currentUser, onOpenModule }) {
+export function HomeScreen({ currentUser, onOpenModule, unreadCount, onRefreshUnreadCount }) {
   const { colors, isDark } = useTheme();
   const styles = useMemo(() => getStyles(colors, isDark), [colors, isDark]);
 
@@ -58,7 +59,10 @@ export function HomeScreen({ currentUser, onOpenModule }) {
   async function handleRefresh() {
     setRefreshing(true);
     try {
-      await loadTodayMenu(true);
+      await Promise.all([
+        loadTodayMenu(true),
+        onRefreshUnreadCount ? onRefreshUnreadCount() : Promise.resolve()
+      ]);
     } catch (error) {
       console.error('Yemek listesi yenilenemedi:', error);
     } finally {
@@ -91,8 +95,25 @@ export function HomeScreen({ currentUser, onOpenModule }) {
       >
         {/* Custom Premium Header & Greeting */}
         <View style={styles.welcomeBanner}>
-          <Text style={styles.dateText}>{getFormattedDate()}</Text>
-          <Text style={styles.welcomeGreeting}>Merhaba, {greetingName}!</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.dateText}>{getFormattedDate()}</Text>
+              <Text style={styles.welcomeGreeting}>Merhaba, {greetingName}!</Text>
+            </View>
+
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={() => onOpenModule({ key: 'notifications', title: 'Bildirimler' })}
+              style={styles.bellButton}
+            >
+              <BellIcon color={isDark ? '#FFFFFF' : '#0F172A'} />
+              {unreadCount > 0 && (
+                <View style={styles.badgeContainer}>
+                  <Text style={styles.badgeText}>{unreadCount}</Text>
+                </View>
+              )}
+            </TouchableOpacity>
+          </View>
           <View style={styles.greetingAccent} />
           <Text style={styles.welcomeSubtitle}>
             Bugün senin için hazırlanan yemek menüsü ve hızlı işlemler:
@@ -334,5 +355,27 @@ const getStyles = (colors, isDark) => StyleSheet.create({
     fontSize: 14,
     fontWeight: '700',
     lineHeight: 20,
+  },
+  bellButton: {
+    padding: 8,
+    position: 'relative',
+  },
+  badgeContainer: {
+    position: 'absolute',
+    top: 2,
+    right: 2,
+    backgroundColor: '#EF4444',
+    borderRadius: 8,
+    minWidth: 16,
+    height: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 3,
+  },
+  badgeText: {
+    color: '#FFFFFF',
+    fontSize: 9,
+    fontWeight: '900',
+    textAlign: 'center',
   },
 });

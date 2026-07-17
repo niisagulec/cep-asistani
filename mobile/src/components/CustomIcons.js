@@ -224,3 +224,35 @@ export function LeaveIcon({ color }) {
     </View>
   );
 }
+
+export function BellIcon({ color }) {
+  return (
+    <View style={{ width: 22, height: 22, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+      <View style={{
+        width: 14,
+        height: 12,
+        borderWidth: 2,
+        borderColor: color,
+        borderTopLeftRadius: 7,
+        borderTopRightRadius: 7,
+        borderBottomLeftRadius: 1,
+        borderBottomRightRadius: 1,
+      }} />
+      <View style={{
+        width: 4,
+        height: 4,
+        borderRadius: 2,
+        backgroundColor: color,
+        marginTop: 1,
+      }} />
+      <View style={{
+        width: 18,
+        height: 2,
+        backgroundColor: color,
+        position: 'absolute',
+        bottom: 5,
+        borderRadius: 1,
+      }} />
+    </View>
+  );
+}

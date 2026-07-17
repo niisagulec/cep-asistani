@@ -6,23 +6,25 @@ import { AttendanceScreen } from './AttendanceScreen';
 import { FeedbackScreen } from './FeedbackScreen';
 import { LeaveScreen } from './LeaveScreen';
 import { ShuttleScreen } from './ShuttleScreen';
+import { NotificationScreen } from './NotificationScreen';
 import { useTheme } from '../context/ThemeContext';
-import { FeedbackIcon, CafeteriaIcon, ShuttleIcon, LeaveIcon, ShiftIcon } from '../components/CustomIcons';
+import { FeedbackIcon, CafeteriaIcon, ShuttleIcon, LeaveIcon, ShiftIcon, BellIcon } from '../components/CustomIcons';
+import { modules } from '../constants/navigation';
 
 function formatShiftTime(value) {
   return value ? value.slice(0, 5) : '--:--';
 }
 
-function ModuleContent({ module, currentUser, refreshToken, onRefreshComplete }) {
+function ModuleContent({ module, currentUser, refreshToken, onRefreshComplete, onBack, onOpenModule }) {
   const { colors } = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
 
   if (module.key === 'cafeteria') return <CafeteriaScreen refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} />;
   if (module.key === 'shuttle') return <ShuttleScreen refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} />;
-  if (module.key === 'feedback') return <FeedbackScreen refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} />;
-  if (module.key === 'attendance') return <AttendanceScreen refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} />;
+  if (module.key === 'feedback') return <FeedbackScreen refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} module={module} />;
+  if (module.key === 'attendance') return <AttendanceScreen refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} module={module} />;
   if (module.key === 'leave') {
-    return <LeaveScreen currentUser={currentUser} refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} />;
+    return <LeaveScreen currentUser={currentUser} refreshToken={refreshToken} onRefreshComplete={onRefreshComplete} module={module} />;
   }
   if (module.key === 'shifts') {
     return (
@@ -42,10 +44,33 @@ function ModuleContent({ module, currentUser, refreshToken, onRefreshComplete })
       </View>
     );
   }
+  if (module.key === 'notifications') {
+    return (
+      <NotificationScreen
+        currentUser={currentUser}
+        onNavigate={(screen, targetId) => {
+          const screenToModuleKey = {
+            leave: 'leave',
+            attendance: 'attendance',
+            feedback: 'feedback',
+            shifts: 'shifts',
+          };
+          const moduleKey = screenToModuleKey[screen];
+          if (moduleKey && onOpenModule) {
+            const targetModule = modules.find((m) => m.key === moduleKey);
+            if (targetModule) {
+              onOpenModule({ ...targetModule, targetId });
+            }
+          }
+        }}
+        onRefreshComplete={onRefreshComplete}
+      />
+    );
+  }
   return null;
 }
 
-export function ModuleScreen({ module, currentUser, onBack }) {
+export function ModuleScreen({ module, currentUser, onBack, onOpenModule }) {
   const { colors } = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
   const [refreshing, setRefreshing] = useState(false);
@@ -66,8 +91,39 @@ export function ModuleScreen({ module, currentUser, onBack }) {
     if (key === 'shuttle') return <ShuttleIcon color={iconColor} />;
     if (key === 'leave' || key === 'attendance') return <LeaveIcon color={iconColor} />;
     if (key === 'shifts') return <ShiftIcon color={iconColor} />;
+    if (key === 'notifications') return <BellIcon color={iconColor} />;
     return null;
   };
+
+  if (module.key === 'notifications') {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={[styles.headerRow, { paddingHorizontal: 18, paddingTop: 12 }]}>
+          <TouchableOpacity activeOpacity={0.75} style={styles.backButton} onPress={onBack}>
+            <Text style={styles.backButtonText}>← Geri</Text>
+          </TouchableOpacity>
+
+          <View style={styles.titleContainer}>
+            <View style={styles.iconWrapper}>
+              {renderHeaderIcon(module.key, colors.primary)}
+            </View>
+            <Text style={styles.headerTitle}>{module.title}</Text>
+          </View>
+        </View>
+
+        <View style={{ flex: 1 }}>
+          <ModuleContent
+            module={module}
+            currentUser={currentUser}
+            onRefreshComplete={() => setRefreshing(false)}
+            refreshToken={refreshToken}
+            onBack={onBack}
+            onOpenModule={onOpenModule}
+          />
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -88,7 +144,7 @@ export function ModuleScreen({ module, currentUser, onBack }) {
           <TouchableOpacity activeOpacity={0.75} style={styles.backButton} onPress={onBack}>
             <Text style={styles.backButtonText}>← Geri</Text>
           </TouchableOpacity>
-          
+
           <View style={styles.titleContainer}>
             <View style={styles.iconWrapper}>
               {renderHeaderIcon(module.key, colors.primary)}
@@ -103,6 +159,8 @@ export function ModuleScreen({ module, currentUser, onBack }) {
             currentUser={currentUser}
             onRefreshComplete={() => setRefreshing(false)}
             refreshToken={refreshToken}
+            onBack={onBack}
+            onOpenModule={onOpenModule}
           />
         </View>
       </ScrollView>

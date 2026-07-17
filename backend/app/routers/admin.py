@@ -219,11 +219,46 @@ def update_employee(
                 detail="Personnel number is already in use",
             )
 
+    old_shift_id = employee.shift_id
+
     for field, value in update_data.items():
         setattr(employee, field, value)
 
     db.commit()
     db.refresh(employee)
+
+    if "shift_id" in update_data and old_shift_id != employee.shift_id:
+        try:
+            from app.services.notification_service import create_and_send_notification
+
+            if employee.shift_id is None:
+                noti_title = "Vardiya Kaldırıldı"
+                noti_body = "Atanmış olan aktif vardiyanız kaldırıldı."
+            else:
+                from app.models import Shift
+                shift = db.query(Shift).filter(Shift.id == employee.shift_id).first()
+                shift_name = shift.name if shift else "Yeni Vardiya"
+                start_str = shift.start_time.strftime('%H:%M') if shift and shift.start_time else '--:--'
+                end_str = shift.end_time.strftime('%H:%M') if shift and shift.end_time else '--:--'
+
+                if old_shift_id is None:
+                    noti_title = "İlk Vardiya Atandı"
+                    noti_body = f"Hesabınıza '{shift_name}' ({start_str} - {end_str}) vardiyası atandı."
+                else:
+                    noti_title = "Vardiya Değiştirildi"
+                    noti_body = f"Vardiyanız '{shift_name}' ({start_str} - {end_str}) olarak güncellendi."
+
+            create_and_send_notification(
+                db=db,
+                user_id=employee.user_id,
+                type="SHIFT_ASSIGN",
+                title=noti_title,
+                body=noti_body,
+                data={"screen": "shifts", "shift_id": employee.shift_id},
+                send_push=True
+            )
+        except Exception as e:
+            pass
 
     return build_employee_response(employee)
 

@@ -13,6 +13,7 @@ import {
 import { getApiErrorMessage } from '../services/api';
 import { changePassword } from '../services/mobileService';
 import { useTheme } from '../context/ThemeContext';
+import * as Notifications from 'expo-notifications';
 
 function getInitials(firstName, lastName, email) {
   if (firstName || lastName) {
@@ -53,6 +54,26 @@ export function ProfileScreen({ currentUser, onLogout }) {
   const [passwordError, setPasswordError] = useState('');
   const [passwordNotice, setPasswordNotice] = useState('');
   const [isSavingPassword, setIsSavingPassword] = useState(false);
+
+  async function triggerTestNotification() {
+    console.log('[TEST NOTIFICATION] Butona basıldı, bildirim planlanıyor...');
+    try {
+      const result = await Notifications.scheduleNotificationAsync({
+        content: {
+          title: 'Cep Asistanı Test Bildirimi 🔔',
+          body: 'Harika! Telefon kilitliyken bildirim bannerı başarıyla düşüyor.',
+          sound: true,
+        },
+        trigger: {
+          type: 'timeInterval',
+          seconds: 3,
+        },
+      });
+      console.log('[TEST NOTIFICATION] Planlama başarılı! ID:', result);
+    } catch (e) {
+      console.error('[TEST NOTIFICATION] Planlama hatası:', e.message || e);
+    }
+  }
 
   const formattedCreatedAt = currentUser?.created_at
     ? new Intl.DateTimeFormat('tr-TR').format(new Date(currentUser.created_at))
@@ -162,6 +183,13 @@ export function ProfileScreen({ currentUser, onLogout }) {
           </View>
         </View>
 
+        <TouchableOpacity
+          activeOpacity={0.82}
+          style={styles.testNotificationButton}
+          onPress={triggerTestNotification}
+        >
+          <Text style={styles.testNotificationButtonText}>Kilit Ekranı Test Bildirimi Gönder</Text>
+        </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.82}
           style={styles.primaryButton}
@@ -451,5 +479,18 @@ const getStyles = (colors) => StyleSheet.create({
   },
   activeThemeChipText: {
     color: '#FFFFFF',
+  },
+  testNotificationButton: {
+    height: 56,
+    borderRadius: 20,
+    backgroundColor: '#E0F2FE',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
+  testNotificationButtonText: {
+    color: colors.primary,
+    fontSize: 16,
+    fontWeight: '900',
   },
 });

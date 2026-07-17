@@ -12,6 +12,7 @@ import {
   peekMobileCache,
   scanAttendanceQr,
 } from '../services/mobileService';
+import { isMeaningfulText } from '../utils/validation';
 
 const eventLabels = { CHECK_IN: 'Giriş', CHECK_OUT: 'Çıkış' };
 const statusLabels = { PENDING: 'Bekliyor', APPROVED: 'Onaylandı', REJECTED: 'Reddedildi' };
@@ -117,7 +118,7 @@ function toCorrectionInputs(value) {
   return { date: `${day}.${month}.${year}`, time: `${hour}:${minute}` };
 }
 
-export function AttendanceScreen({ refreshToken = 0, onRefreshComplete }) {
+export function AttendanceScreen({ refreshToken = 0, onRefreshComplete, module }) {
   const { colors } = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
   const cachedRecords = peekMobileCache('myAttendanceRecords');
@@ -200,6 +201,12 @@ export function AttendanceScreen({ refreshToken = 0, onRefreshComplete }) {
       });
   }, [refreshToken]);
 
+  useEffect(() => {
+    if (!loading && module?.targetId && corrections.length > 0) {
+      setCorrectionHistoryOpen(true);
+    }
+  }, [loading, module?.targetId, corrections]);
+
   async function openScanner() {
     setError('');
     setNotice('');
@@ -221,8 +228,16 @@ export function AttendanceScreen({ refreshToken = 0, onRefreshComplete }) {
       setCorrectionError('Tarih, saat ve düzeltme nedeni eksiksiz girilmeli.');
       return;
     }
+    if (!isMeaningfulText(correctionReason)) {
+      setCorrectionError('Düzeltme nedenini anlamlı ve açıklayıcı bir metin olarak yazmalısın.');
+      return;
+    }
     if (new Date(requestedTime).getTime() > Date.now()) {
       setCorrectionError('Gelecekteki bir saat için düzeltme talebi oluşturamazsın.');
+      return;
+    }
+    if (new Date(requestedTime).getTime() < Date.now() - (30 * 24 * 60 * 60 * 1000)) {
+      setCorrectionError('Yalnızca son 30 güne ait mesai kayıtları için düzeltme talebi oluşturabilirsin.');
       return;
     }
 
@@ -457,7 +472,17 @@ export function AttendanceScreen({ refreshToken = 0, onRefreshComplete }) {
           {!corrections.length ? (
             <EmptyState title="Henüz düzeltme talebin yok" text="Gönderdiğin talepler burada listelenecek." />
           ) : corrections.map((correction) => (
-            <View key={correction.id} style={styles.correctionCard}>
+            <View
+              key={correction.id}
+              style={[
+                styles.correctionCard,
+                Number(module?.targetId) === correction.id && {
+                  borderColor: colors.primary,
+                  borderWidth: 2,
+                  backgroundColor: colors.softBlue,
+                }
+              ]}
+            >
               <View style={styles.correctionHeader}>
                 <Text style={styles.correctionType}>
                   {eventLabels[correction.requested_event_type]} düzeltmesi

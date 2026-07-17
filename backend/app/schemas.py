@@ -7,6 +7,29 @@ from pydantic import BaseModel, EmailStr, field_validator
 from app.auth import validate_password_strength
 
 
+TURKISH_LETTER_PATTERN = r"[A-Za-zÇĞİÖŞÜçğıöşü]"
+TURKISH_VOWELS = set("aeıioöuüAEIİOÖUÜ")
+
+
+def validate_meaningful_request_text(value: str, field_label: str) -> str:
+    cleaned_value = " ".join(value.split())
+    letters = re.findall(TURKISH_LETTER_PATTERN, cleaned_value)
+    words = re.findall(r"[A-Za-zÇĞİÖŞÜçğıöşü]+", cleaned_value)
+
+    if len(letters) < 6:
+        raise ValueError(f"{field_label} en az 6 harf içermeli")
+    if len(words) == 1 and len(words[0]) < 8:
+        raise ValueError(f"{field_label} daha açıklayıcı olmalı")
+    if not any(letter in TURKISH_VOWELS for letter in letters):
+        raise ValueError(f"{field_label} anlamlı bir metin olmalı")
+    if re.search(r"(.)\1{4,}", cleaned_value.lower()):
+        raise ValueError(f"{field_label} tekrar eden anlamsız karakterler içeriyor")
+    if len(set(letter.lower() for letter in letters)) < 3:
+        raise ValueError(f"{field_label} anlamlı bir metin olmalı")
+
+    return cleaned_value
+
+
 class LoginRequest(BaseModel):
     email: EmailStr
     password: str
@@ -219,10 +242,7 @@ class AttendanceCorrectionCreate(BaseModel):
     @field_validator("reason")
     @classmethod
     def validate_reason(cls, reason: str) -> str:
-        cleaned_reason = reason.strip()
-        if not cleaned_reason:
-            raise ValueError("Reason is required")
-        return cleaned_reason
+        return validate_meaningful_request_text(reason, "Düzeltme nedeni")
 
 
 class AttendanceCorrectionAdminUpdate(BaseModel):
@@ -234,15 +254,22 @@ class LeaveRequestCreate(BaseModel):
     leave_type: str
     start_date: date
     end_date: date
-    total_days: float
-    reason: Optional[str] = None
+    total_days: Optional[float] = None
+    reason: str
 
     @field_validator("total_days")
     @classmethod
-    def validate_total_days(cls, total_days: float) -> float:
+    def validate_total_days(cls, total_days: Optional[float]) -> Optional[float]:
+        if total_days is None:
+            return total_days
         if total_days <= 0:
             raise ValueError("Total days must be greater than 0")
         return total_days
+
+    @field_validator("reason")
+    @classmethod
+    def validate_reason(cls, reason: str) -> str:
+        return validate_meaningful_request_text(reason, "İzin nedeni")
 
 
 class LeaveRequestAdminUpdate(BaseModel):
@@ -532,3 +559,30 @@ class FeedbackResponse(BaseModel):
 class FeedbackAdminUpdate(BaseModel):
     status: Optional[str] = None
     admin_note: Optional[str] = None
+
+
+class NotificationResponse(BaseModel):
+    id: int
+    user_id: int
+    type: str
+    title: str
+    body: str
+    data: Optional[dict] = None
+    is_read: bool
+    created_at: datetime
+    read_at: Optional[datetime] = None
+
+    class Config:
+        from_attributes = True
+
+
+class UnreadCountResponse(BaseModel):
+    unread_count: int
+
+
+class DevicePushTokenCreate(BaseModel):
+    expo_push_token: Optional[str] = None
+    native_push_token: Optional[str] = None
+    platform: str
+    device_identifier: Optional[str] = None
+    app_version: Optional[str] = None

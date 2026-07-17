@@ -7,6 +7,7 @@ from sqlalchemy import (
     Float,
     ForeignKey,
     Integer,
+    JSON,
     String,
     Text,
     Time,
@@ -284,3 +285,37 @@ class Feedback(Base):
     employee = relationship("Employee", back_populates="feedbacks")
     category = relationship("FeedbackCategory", back_populates="feedbacks")
     reviewer = relationship("User")
+
+
+class Notification(Base):
+    __tablename__ = "notifications"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    type = Column(String(50), nullable=False)
+    title = Column(String(255), nullable=False)
+    body = Column(Text, nullable=False)
+    data = Column(JSON, nullable=True)
+    is_read = Column(Boolean, nullable=False, default=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+    read_at = Column(DateTime(timezone=True), nullable=True)
+
+    user = relationship("User")
+
+
+class DevicePushToken(Base):
+    __tablename__ = "device_push_tokens"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    expo_push_token = Column(String(255), nullable=True)
+    native_push_token = Column(String(255), nullable=True)
+    platform = Column(String(50), nullable=False)
+    device_identifier = Column(String(255), nullable=True)
+    app_version = Column(String(50), nullable=True)
+    environment = Column(String(50), nullable=False, default="development")
+    is_active = Column(Boolean, nullable=False, default=True)
+    last_seen_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now(), nullable=False)
+    created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
+
+    user = relationship("User")
