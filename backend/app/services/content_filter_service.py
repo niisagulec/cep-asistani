@@ -11,6 +11,19 @@ MIN_LETTER_COUNT = 3
 MAX_SINGLE_TOKEN_LENGTH = 45
 TURKISH_VOWELS = "aeıioöuü"
 
+MESSAGE_TOKEN_NORMALIZATIONS = {
+    "int": "internet",
+    "srvs": "servis",
+    "klıma": "klima",
+    "calsmıyo": "çalışmıyor",
+    "calismiyo": "çalışmıyor",
+    "acmıyo": "açmıyor",
+    "acilmiyo": "açılmıyor",
+    "ymkten": "yemekten",
+    "hla": "hâlâ",
+    "maas": "maaş",
+}
+
 FORBIDDEN_PATTERNS = [
     # Küfür/hakaret kökleri. Tam listeyi kullanıcıya göstermiyoruz;
     # amaç mesajı engellemek, sistemi manipüle etmeyi kolaylaştırmamak.
@@ -85,9 +98,15 @@ CATEGORY_KEYWORDS = {
         "çatal",
         "catal",
         "salata",
+        "tepsi",
+        "yemek salonu",
+        "makarna",
+        "tatsız",
+        "tatsiz",
     ],
     "Servis": [
         "servis",
+        "srvs",
         "şoför",
         "sofor",
         "servisçi",
@@ -127,8 +146,28 @@ CATEGORY_KEYWORDS = {
     "Teknik Destek": [
         "bilgisayar",
         "laptop",
+        "kulaklık",
+        "kulaklik",
+        "mikrofon",
+        "excel",
+        "lisans",
         "vpn",
         "internet",
+        "wifi",
+        "wi-fi",
+        "klavye",
+        "personel portalı",
+        "personel portali",
+        "rapor ekranı",
+        "rapor ekrani",
+        "uygulama yavaş",
+        "uygulama yavas",
+        "uygulama çok yavaş",
+        "uygulama cok yavas",
+        "ekran açılmıyor",
+        "ekran acilmiyor",
+        "ekranı açılmıyor",
+        "ekrani acilmiyor",
         "yazılım",
         "yazilim",
         "uygulama",
@@ -151,6 +190,10 @@ CATEGORY_KEYWORDS = {
         "yazı",
         "yazi",
         "kablo",
+        "kart okuyucu",
+        "kart basıyorum",
+        "kart basiyorum",
+        "turnike kart",
         "priz",
         "elektrik",
         "matkap",
@@ -171,10 +214,24 @@ CATEGORY_KEYWORDS = {
     ],
     "İK / Personel İşleri": [
         "izin",
+        "evlilik izni",
+        "doğum izni",
+        "dogum izni",
+        "babalık izni",
+        "babalik izni",
+        "mazeret izni",
+        "ücretsiz izin",
+        "ucretsiz izin",
         "bordro",
         "maaş",
         "maas",
         "yan hak",
+        "yemek kartı",
+        "yemek karti",
+        "eğitim",
+        "egitim",
+        "mesleki gelişim",
+        "mesleki gelisim",
         "personel",
         "ik",
         "özlük",
@@ -237,6 +294,11 @@ CATEGORY_KEYWORDS = {
         "kafa",
         "yaklaşamıyor",
         "yaklasamiyor",
+        "açıkta kablo",
+        "acikta kablo",
+        "ıslak zemin",
+        "islak zemin",
+        "raf devril",
     ],
     "Ortak Alan": [
         "tuvalet",
@@ -259,6 +321,18 @@ CATEGORY_KEYWORDS = {
         "cekirdek",
         "kabuk",
         "pislik",
+        "asansör",
+        "asansor",
+        "merdiven",
+        "korkuluk",
+        "sabun",
+        "peçete",
+        "pecete",
+        "otopark",
+        "park alanı",
+        "park alani",
+        "park yeri",
+        "park yerleri",
     ],
     "Çalışma Ortamı": [
         "ofis",
@@ -300,6 +374,19 @@ CATEGORY_KEYWORDS = {
         "masa",
         "sandalye",
         "ergonomi",
+        "makine sesi",
+        "uğultu",
+        "ugultu",
+        "yan masa",
+        "ekran konumu",
+        "boyun ağrısı",
+        "boyun agrisi",
+        "bel ağrısı",
+        "bel agrisi",
+        "masa yüksekliği",
+        "masa yuksekligi",
+        "ışık",
+        "isik",
     ],
     "Öneri ve İyileştirme": [
         "öneri",
@@ -347,7 +434,10 @@ class CategoryAlignmentResult:
 
 def normalize_message(message: str) -> str:
     lowered_message = message.lower().replace("i̇", "i")
-    return " ".join(lowered_message.strip().split())
+    lowered_message = re.sub(r"(.)\1{2,}", r"\1\1", lowered_message)
+    words = lowered_message.strip().split()
+    normalized_words = [MESSAGE_TOKEN_NORMALIZATIONS.get(word, word) for word in words]
+    return " ".join(normalized_words)
 
 
 def clean_message_for_storage(message: str) -> str:
@@ -548,6 +638,128 @@ def analyze_feedback_category_alignment(
     selected_category_name: str,
 ) -> CategoryAlignmentResult:
     detected_categories = detect_message_categories(message)
+    normalized_message = normalize_message(message)
+
+    if any(
+        parking_phrase in normalized_message
+        for parking_phrase in ("otopark", "park yeri", "park yerleri", "park alanı")
+    ):
+        detected_categories.pop("Servis", None)
+        detected_categories.pop("İK / Personel İşleri", None)
+
+    if any(
+        card_reader_phrase in normalized_message
+        for card_reader_phrase in ("kart okuyucu", "kart basıyorum", "kart basiyorum")
+    ):
+        detected_categories.pop("Çalışma Ortamı", None)
+
+    if (
+        any(
+            card_device_phrase in normalized_message
+            for card_device_phrase in ("kart okut", "kart okuyucu")
+        )
+        and any(
+            failure_phrase in normalized_message
+            for failure_phrase in ("cihaz bozul", "bozulmuş", "çalışmıyor", "calismiyor")
+        )
+    ):
+        detected_categories["Teknik Destek"] = max(
+            detected_categories.get("Teknik Destek", 0),
+            2,
+        )
+        detected_categories.pop("Yemekhane", None)
+
+    if any(
+        food_service_phrase in normalized_message
+        for food_service_phrase in (
+            "yemek servisi",
+            "yemek servisi yapan",
+            "yemek dağıtım",
+            "yemek dagitim",
+        )
+    ):
+        detected_categories.pop("Servis", None)
+        detected_categories.pop("İK / Personel İşleri", None)
+        detected_categories["Yemekhane"] = max(
+            detected_categories.get("Yemekhane", 0),
+            2,
+        )
+
+    if any(
+        shared_area_phrase in normalized_message
+        for shared_area_phrase in ("tuvalet", "lavabo", "wc")
+    ):
+        detected_categories.pop("İK / Personel İşleri", None)
+        detected_categories.pop("Çalışma Ortamı", None)
+        detected_categories["Ortak Alan"] = max(
+            detected_categories.get("Ortak Alan", 0),
+            2,
+        )
+
+    if any(
+        security_entry_phrase in normalized_message
+        for security_entry_phrase in (
+            "ana kapı",
+            "ana kapi",
+            "kart basmadan",
+            "güvenlik açığı",
+            "guvenlik acigi",
+        )
+    ):
+        detected_categories.pop("Teknik Destek", None)
+
+    has_leave_context = any(
+        leave_phrase in normalized_message
+        for leave_phrase in (
+            "babalık izni",
+            "babalik izni",
+            "doğum izni",
+            "dogum izni",
+            "evlilik izni",
+            "mazeret izni",
+            "ücretsiz izin",
+            "ucretsiz izin",
+            "yıllık izin",
+            "yillik izin",
+        )
+    )
+    has_technical_failure = any(
+        failure_phrase in normalized_message
+        for failure_phrase in (
+            "açılmıyor",
+            "acilmiyor",
+            "hata ver",
+            "çalışmıyor",
+            "calismiyor",
+            "yüklenmiyor",
+            "yuklenmiyor",
+            "donuyor",
+        )
+    )
+    if has_leave_context and not has_technical_failure:
+        detected_categories.pop("Teknik Destek", None)
+        detected_categories["İK / Personel İşleri"] = max(
+            detected_categories.get("İK / Personel İşleri", 0),
+            2,
+        )
+
+    has_corridor_climate_noise = (
+        "koridor" in normalized_message
+        and any(
+            climate_phrase in normalized_message
+            for climate_phrase in ("klima", "havalandırma", "havalandirma")
+        )
+        and any(
+            noise_phrase in normalized_message
+            for noise_phrase in ("ses", "uğultu", "ugultu", "gürültü", "gurultu")
+        )
+    )
+    if has_corridor_climate_noise:
+        detected_categories.pop("Ortak Alan", None)
+        detected_categories["Çalışma Ortamı"] = max(
+            detected_categories.get("Çalışma Ortamı", 0),
+            2,
+        )
 
     if not detected_categories:
         return CategoryAlignmentResult(

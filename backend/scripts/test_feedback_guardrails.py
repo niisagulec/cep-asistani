@@ -1,3 +1,4 @@
+import argparse
 import json
 import sys
 from collections import Counter
@@ -21,9 +22,12 @@ from app.services.feedback_relevance_service import (
     analyze_feedback_relevance,
 )
 from app.services.nlp_service import analyze_feedback_message
+from app.routers.feedback import calculate_total_priority_score
 
 
-TEST_CASES_PATH = BACKEND_DIR / "app" / "data" / "feedback_guardrail_test_cases.json"
+DEFAULT_TEST_CASES_PATH = (
+    BACKEND_DIR / "app" / "data" / "feedback_guardrail_test_cases.json"
+)
 NON_STRICT_DETAIL_BEHAVIORS = {
     "SPECIFIC_OR_GENERAL",
     "GENERAL_IF_LOW_CONFIDENCE",
@@ -31,8 +35,19 @@ NON_STRICT_DETAIL_BEHAVIORS = {
 }
 
 
-def load_test_cases() -> list[dict]:
-    with TEST_CASES_PATH.open("r", encoding="utf-8") as test_cases_file:
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Feedback pipeline testlerini çalıştırır.")
+    parser.add_argument(
+        "--dataset",
+        type=Path,
+        default=DEFAULT_TEST_CASES_PATH,
+        help="Çalıştırılacak JSON test dosyası.",
+    )
+    return parser.parse_args()
+
+
+def load_test_cases(test_cases_path: Path) -> list[dict]:
+    with test_cases_path.open("r", encoding="utf-8") as test_cases_file:
         return json.load(test_cases_file)
 
 
@@ -142,13 +157,19 @@ def is_expected_behavior(test_case: dict, result: dict) -> bool:
         if expected_priority_behavior == "SUGGESTION" and result["actual_priority"] > 2:
             return False
 
+        expected_priority = test_case.get("expected_priority")
+        if expected_priority is not None and result["actual_priority"] != expected_priority:
+            return False
+
         return True
 
     return False
 
 
 def main() -> None:
-    test_cases = load_test_cases()
+    args = parse_args()
+    test_cases_path = args.dataset.expanduser().resolve()
+    test_cases = load_test_cases(test_cases_path)
     rows = []
 
     for index, test_case in enumerate(test_cases, start=1):
@@ -166,6 +187,7 @@ def main() -> None:
                 "actual_confidence": result["actual_confidence"],
                 "actual_priority": result["actual_priority"],
                 "error": result["error"],
+                "consistency_group": test_case.get("consistency_group"),
                 "is_ok": is_ok,
             }
         )
@@ -176,7 +198,7 @@ def main() -> None:
 
     print("Feedback guardrail test sonucu")
     print("------------------------------")
-    print(f"Test dosyası: {TEST_CASES_PATH}")
+    print(f"Test dosyası: {test_cases_path}")
     print(f"Toplam test: {total_count}")
     print(f"Beklenen davranış: {ok_count}/{total_count} (%{ok_count / total_count * 100:.1f})")
 
@@ -187,6 +209,38 @@ def main() -> None:
     print("\nMevcut pipeline aksiyon dağılımı:")
     for action, count in Counter(row["actual_action"] for row in rows).items():
         print(f"- {action}: {count}")
+
+    consistency_rows = [row for row in rows if row["consistency_group"]]
+    consistency_groups = {
+        row["consistency_group"] for row in consistency_rows
+    }
+    consistent_groups = sum(
+        all(
+            row["is_ok"]
+            for row in consistency_rows
+            if row["consistency_group"] == group
+        )
+        for group in consistency_groups
+    )
+    if consistency_groups:
+        print("\nTutarlılık sonucu:")
+        print(f"- Grup: {consistent_groups}/{len(consistency_groups)}")
+        print(
+            "- Mesaj: "
+            f"{sum(row['is_ok'] for row in consistency_rows)}/{len(consistency_rows)}"
+        )
+
+    priority_totals = {
+        calculate_total_priority_score(sender_score, 3)
+        for sender_score in (1, 2, 3, 4)
+    }
+    priority_is_consistent = len(priority_totals) == 1
+    print(
+        "- Pozisyondan bağımsız öncelik: "
+        f"{'BAŞARILI' if priority_is_consistent else 'BAŞARISIZ'}"
+    )
+    if not priority_is_consistent:
+        raise SystemExit(1)
 
     if not failed_rows:
         print("\nTüm testler beklenen davranışta.")

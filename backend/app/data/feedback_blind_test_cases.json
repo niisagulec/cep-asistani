@@ -1,0 +1,284 @@
+[
+  {
+    "text": "pilavın içinden taş gibi sert bi parça çıktı dişim kırılıyodu",
+    "selected_category": "Yemekhane",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Hijyen/Temizlik",
+    "expected_priority": 5
+  },
+  {
+    "text": "glutensiz ya da vegan alternatifler de menüye konulabilir",
+    "selected_category": "Yemekhane",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Menü Çeşitliliği",
+    "expected_priority": 2
+  },
+  {
+    "text": "öğlen kasanın önünde kuyruk çok uzuyor yarım saat bekliyoruz",
+    "selected_category": "Yemekhane",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sıra/Kalabalık",
+    "expected_priority": 3
+  },
+  {
+    "text": "makarnalar soğuk ve tatsız geldi",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Yemekhane"
+  },
+  {
+    "text": "sabah servisi üç gündür durağa yirmi dakika geç ulaşıyor",
+    "selected_category": "Servis",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Saat/Gecikme",
+    "expected_priority": 3
+  },
+  {
+    "text": "şoför yolculara bağırıp ters cevap veriyor",
+    "selected_category": "Servis",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 3
+  },
+  {
+    "text": "servisin frenleri tutmuyor araç zor durdu",
+    "selected_category": "Servis",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güvenlik/Risk",
+    "expected_priority": 5
+  },
+  {
+    "text": "koltuk döşemeleri yırtılmış otururken canımız acıyor",
+    "selected_category": "Servis",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Araç Konforu",
+    "expected_priority": 3
+  },
+  {
+    "text": "muhasebe programı açılırken dakikalarca bekletiyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sistem Performansı",
+    "expected_priority": 3
+  },
+  {
+    "text": "ortak klasöre girince erişim reddedildi yazıyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Erişim/Yetki Sorunu",
+    "expected_priority": 3
+  },
+  {
+    "text": "mouse çift tıklıyor ve usb girişi temassızlık yapıyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Donanım Sorunu",
+    "expected_priority": 3
+  },
+  {
+    "text": "şirket wifi ağına bağlanıyorum ama internet gelmiyor",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Teknik Destek"
+  },
+  {
+    "text": "fazla mesai ödemem bu ayki bordroya eklenmemiş",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Maaş/Yan Haklar",
+    "expected_priority": 3
+  },
+  {
+    "text": "izin isteğimin neden reddedildiğine dair bilgi göremiyorum",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İzin/Süreç Bilgilendirme",
+    "expected_priority": 3
+  },
+  {
+    "text": "yeni başlayanlara iş güvenliği eğitimi verilse iyi olur",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Eğitim/Gelişim",
+    "expected_priority": 2
+  },
+  {
+    "text": "vardiya değişikliği bize son dakika bildiriliyor",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İletişim/Bilgilendirme",
+    "expected_priority": 3
+  },
+  {
+    "text": "üçüncü kattaki asansör kapısı açılırken takılıyor",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Asansör/Merdiven",
+    "expected_priority": 3
+  },
+  {
+    "text": "kadınlar tuvaletinde kağıt havlu ve sabun bitmiş",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Tuvalet/Sarf Malzeme",
+    "expected_priority": 3
+  },
+  {
+    "text": "toplantı odası rezervasyonu olduğu halde sürekli dolu oluyor",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Toplantı Odası",
+    "expected_priority": 3
+  },
+  {
+    "text": "personel araçları için ayrılan park yerleri yetersiz",
+    "selected_category": "Servis",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Ortak Alan"
+  },
+  {
+    "text": "acil çıkış kapısının önüne palet bırakılmış",
+    "selected_category": "Güvenlik",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Fiziksel Risk",
+    "expected_priority": 5
+  },
+  {
+    "text": "yangın tüpünün göstergesi kırmızıda ve tarihi geçmiş",
+    "selected_category": "Güvenlik",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Acil Durum/Ekipman",
+    "expected_priority": 5
+  },
+  {
+    "text": "gece vardiyasında ziyaretçiler kimlik sorulmadan içeri alınıyor",
+    "selected_category": "Güvenlik",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Giriş-Çıkış/Güvenlik Kontrolü",
+    "expected_priority": 3
+  },
+  {
+    "text": "pres makinesinin koruyucu kapağı sökülmüş halde çalıştırılıyor",
+    "selected_category": "Güvenlik",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İş Güvenliği Riski",
+    "expected_priority": 5
+  },
+  {
+    "text": "çalışma masam çok alçak olduğu için omzum ağrıyor",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Ergonomi",
+    "expected_priority": 3
+  },
+  {
+    "text": "üretim bölümündeki uğultudan yanımızdakini duyamıyoruz",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Gürültü",
+    "expected_priority": 3
+  },
+  {
+    "text": "ofis öğleden sonra buz gibi oluyor kalorifer ısıtmıyor",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Isıtma/Soğutma",
+    "expected_priority": 3
+  },
+  {
+    "text": "deponun arka tarafında ışık çok az ürünleri göremiyoruz",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Aydınlatma",
+    "expected_priority": 3
+  },
+  {
+    "text": "izin onay sürecindeki gereksiz iki adım kaldırılabilir",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Süreç İyileştirme",
+    "expected_priority": 2
+  },
+  {
+    "text": "departmanlar arası ayda bir spor etkinliği düzenlenebilir",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sosyal Etkinlik",
+    "expected_priority": 2
+  },
+  {
+    "text": "arıza bildirimleri için fotoğraf ekleme özelliği geliştirilebilir",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Teknolojik İyileştirme",
+    "expected_priority": 2
+  },
+  {
+    "text": "doğum günlerinde küçük bi kutlama yapılması çalışanları mutlu eder",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Çalışan Deneyimi",
+    "expected_priority": 2
+  },
+  {
+    "text": "hem servis geç geliyor hem de yemekler sürekli soğuk",
+    "selected_category": "Diğer",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT_WITH_MANUAL_REVIEW",
+    "expected_detail_behavior": "Çoklu Konu",
+    "expected_priority": 3
+  },
+  {
+    "text": "çalışan kartım kapıyı açmıyor",
+    "selected_category": "Diğer",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT_WITH_MANUAL_REVIEW"
+  },
+  {
+    "text": "uygulama çok yavaş izin ekranı açılmıyor",
+    "selected_category": "Yemekhane",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Teknik Destek"
+  },
+  {
+    "text": "servis şoförü hareket halindeyken mesaj yazıyor",
+    "selected_category": "Servis",
+    "expected_stage": "BLIND_TEST",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 5
+  }
+]

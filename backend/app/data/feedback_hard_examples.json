@@ -320,5 +320,369 @@
     "tone": "STANDART_SIKAYET",
     "priority": 3,
     "text": "Yemeklerin tadı çok kötü, etler bazen pişmemiş gibi geliyor."
+  },
+  {
+    "category": "Yemekhane",
+    "nlp_detail": "Yemek Kalitesi",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Izgara ürünleri çiğ servis edilmiş, yiyen arkadaşların bazıları rahatsızlandı."
+  },
+  {
+    "category": "Yemekhane",
+    "nlp_detail": "Yemek Kalitesi",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Ana yemeklerin içi yeterince pişmiyor ve servis edildiğinde hâlâ soğuk oluyor."
+  },
+  {
+    "category": "Yemekhane",
+    "nlp_detail": "Menü Çeşitliliği",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Aynı yemek listesi kısa aralıklarla tekrar ediyor, seçenekler çok sınırlı kalıyor."
+  },
+  {
+    "category": "Yemekhane",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Dağıtım görevlisi çalışanların sorularına bağırarak ve küçümseyerek cevap veriyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Şoför Davranışı",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Sürücü araç hareket ederken telefondan yazışıyor ve gözünü uzun süre yoldan ayırıyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Şoför Davranışı",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Kaptan seyir sırasında sosyal medya bildirimlerini kontrol ediyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Şoför Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Aracı kullanan kişi yolcuların sorularına kaba cevaplar verip tartışma çıkarıyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Güvenlik/Risk",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Aracın fren pedalı boşalıyor ve araç normal mesafede duramıyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Güvenlik/Risk",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Yolcu kapısının kilidi bozuk, hareket sırasında kendiliğinden açılabiliyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Araç Konforu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Otobüsün soğutması devreye girmiyor, kabinin içi yolculuk boyunca çok sıcak kalıyor."
+  },
+  {
+    "category": "Servis",
+    "nlp_detail": "Saat/Gecikme",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Vardiya bitimindeki araç ilan edilen saatten sonra geliyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Yazılım Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Ofis programında işlem kaydedilirken uygulama kapanıyor ve girilen bilgiler kayboluyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Yazılım Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Muhasebe yazılımı belirli menülere geçince hata mesajı verip ana ekrana dönüyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Erişim/Yetki Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Daha önce kullandığım modüle artık yetkisiz kullanıcı uyarısı nedeniyle giremiyorum."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Erişim/Yetki Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Rolümden işlem izni kaldırıldığı için satın alma kayıtlarını açamıyorum."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "İnternet/Ağ Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Kablosuz ağ birkaç dakikada bir bağlantıyı kesip yeniden bağlanıyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "İnternet/Ağ Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Çevrim içi toplantılarda ağ kopması yüzünden görüntü ve ses kesiliyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Sistem Performansı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Raporların açılması birkaç dakika sürüyor ve ekran uzun süre yanıt vermiyor."
+  },
+  {
+    "category": "Teknik Destek",
+    "nlp_detail": "Donanım Sorunu",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Bilgisayar aşırı fan sesi çıkarıp herhangi bir uyarı vermeden yeniden başlıyor."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "İzin/Süreç Bilgilendirme",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Sağlık raporu girdiğim gün sistemde devamsızlık olarak işaretlenmiş."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "İzin/Süreç Bilgilendirme",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Raporlu günlerimin izin hesabına neden yansımadığını öğrenmek istiyorum."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "İletişim/Bilgilendirme",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Tatil günü çalışma kararı personele sadece bir gün önceden duyuruldu."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "İletişim/Bilgilendirme",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Mesai planındaki önemli değişiklikler ekiplerle zamanında paylaşılmıyor."
+  },
+  {
+    "category": "İK / Personel İşleri",
+    "nlp_detail": "Eğitim/Gelişim",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Yeni üretim ekipmanı için operatörlere uygulamalı kullanım eğitimi verilebilir."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Asansör/Merdiven",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Kat düğmesine basınca asansör ters yönde hareket ediyor ve yanlış katta duruyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Dinlenme Alanı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Mola bölümündeki oturma yerleri vardiyadaki çalışan sayısına yetmiyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Otopark",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Park bölmelerinin çizgileri yenilenerek araç yerleşimi düzenlenebilir."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Fiziksel Risk",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Geçiş yoluna sıvı dökülmüş, zeminde yürüyenlerin ayağı kayıyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "İş Güvenliği Riski",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Depo aracının sesli ikaz sistemi devreye girmediği için yaklaşan aracı kimse fark etmiyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "İş Güvenliği Riski",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Hareketli iş ekipmanı geri manevrada çevresine uyarı vermiyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Acil Durum/Ekipman",
+    "tone": "ACIL_TEHLIKE",
+    "priority": 5,
+    "text": "Tahliye yönlendirme ışıkları çalışmadığı için acil çıkış yolu görünmüyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Gürültü",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Üretim ekipmanının sürekli uğultusu çalışanların konuşmasını duymayı engelliyor."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Alan Yetersizliği",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Aynı bölüme çok fazla masa yerleştirildiği için geçiş koridoru kalmadı."
+  },
+  {
+    "category": "Çalışma Ortamı",
+    "nlp_detail": "Aydınlatma",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Tavan lambasının yansıması monitördeki bilgileri okumayı zorlaştırıyor."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Sosyal Etkinlik",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Farklı ekiplerin kaynaşması için dönemsel gezi veya piknik organize edilebilir."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Sosyal Etkinlik",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Departmanların birlikte katılacağı küçük spor turnuvaları düzenlenebilir."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Çalışan Deneyimi",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Yoğun dönemlerde ekiplerin mola zamanını kendi içinde esnetebilmesi faydalı olur."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Teknolojik İyileştirme",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Şirket prosedürlerini yanıtlayan kurum içi dijital asistan geliştirilebilir."
+  },
+  {
+    "category": "Öneri ve İyileştirme",
+    "nlp_detail": "Süreç İyileştirme",
+    "tone": "DILEK_ONERI",
+    "priority": 2,
+    "text": "Masraf onayları tekrar eden ekranlar yerine tek formdan ilerleyebilir."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Güvenlik görevlisi girişte çalışanlarla konuşurken sürekli bağırıyor ve kaba davranıyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Nöbetçi güvenlik personeli soru soran çalışanları tersleyip küçümseyici cevaplar veriyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Kapı kontrolündeki görevli bazı personele ayrımcı ve saygısız davranıyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Gece vardiyasındaki güvenlik görevlisi çalışanlara uygunsuz sözler söylüyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Güvenlik masasında görevli kişi kişisel telefon numaramdan rahatsız edici mesajlar gönderiyor."
+  },
+  {
+    "category": "Güvenlik",
+    "nlp_detail": "Personel Davranışı",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Turnikedeki görevli çalışanların yanında hakaret ederek iletişim kuruyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Koridor zemini günlerdir silinmediği için her yer toz ve kir içinde."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Dinlenme alanındaki masalar yapış yapış ve çöpler düzenli toplanmıyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Merdiven boşluğunda kötü koku var ve temizlik uzun süredir yapılmamış."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Ortak kullanım mutfağının tezgahı kirli, yerde yiyecek artıkları duruyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Bekleme bölümündeki koltuklarda lekeler ve çevresinde birikmiş çöpler var."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Toplantı odaları kullanımdan sonra temizlenmiyor ve masalarda atıklar bırakılıyor."
+  },
+  {
+    "category": "Ortak Alan",
+    "nlp_detail": "Hijyen/Temizlik",
+    "tone": "STANDART_SIKAYET",
+    "priority": 3,
+    "text": "Asansör kabininin zemini çok kirli ve duvarlarda lekeler bulunuyor."
   }
 ]

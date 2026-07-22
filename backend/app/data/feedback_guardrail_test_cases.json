@@ -227,8 +227,9 @@
     "expected_stage": "DETAIL_CLASSIFICATION",
     "expected_action": "ACCEPT",
     "expected_category": "Teknik Destek",
-    "expected_detail_behavior": "Güvenlik/Risk",
-    "note": "Kablo aşınması güvenlik riski olarak önceliklendirilmeli."
+    "expected_detail_behavior": "Donanım Sorunu",
+    "expected_priority_behavior": "CRITICAL",
+    "note": "Teknik Destek içindeki kablo aşınması donanım detayı ve kritik öncelik taşımalı."
   },
   {
     "text": "masaların ayakları sallanıyor",
@@ -266,5 +267,680 @@
     "expected_action": "SUGGEST_CATEGORY_CHANGE",
     "expected_category": "Ortak Alan",
     "note": "Kullanıcı servis seçse bile tuvalet/hijyen mesajı ortak alan kategorisine önerilmeli."
+  },
+  {
+    "text": "uygda bildirim silme kısmı düzgün calismiyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yazılım Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Bildirim silme yazılım sorunu"
+  },
+  {
+    "text": "uygulamada bildirim silme kısmına bakar mısınız lütfen iyi calismiyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yazılım Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Bildirim silme yazılım sorunu"
+  },
+  {
+    "text": "Bildirim silme butonu çalışmıyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yazılım Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Bildirim silme yazılım sorunu"
+  },
+  {
+    "text": "Yazıcı kağıdı sürekli sıkıştırıyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Donanım Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Fiziksel cihaz donanım sorunu"
+  },
+  {
+    "text": "Klavyenin bazı tuşları basmıyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Donanım Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Fiziksel cihaz donanım sorunu"
+  },
+  {
+    "text": "Laptop çalışırken kendi kendine kapanıyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Donanım Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Fiziksel cihaz donanım sorunu"
+  },
+  {
+    "text": "Ofis interneti sürekli kopuyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İnternet/Ağ Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Bağlantı ağ sorunu"
+  },
+  {
+    "text": "Wifi bağlantısı toplantı sırasında kesiliyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İnternet/Ağ Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Bağlantı ağ sorunu"
+  },
+  {
+    "text": "VPN bağlantısı kurulamıyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İnternet/Ağ Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Bağlantı ağ sorunu"
+  },
+  {
+    "text": "Personel portalına giriş yapamıyorum.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Erişim/Yetki Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Hesap erişim sorunu"
+  },
+  {
+    "text": "Şifremi sıfırlayamıyorum, hesabım açılmıyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Erişim/Yetki Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Hesap erişim sorunu"
+  },
+  {
+    "text": "Bu sayfaya erişim yetkim bulunmuyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Erişim/Yetki Sorunu",
+    "expected_priority": 3,
+    "consistency_group": "Hesap erişim sorunu"
+  },
+  {
+    "text": "Uygulama çok yavaş çalışıyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sistem Performansı",
+    "expected_priority": 3,
+    "consistency_group": "Sistem yavaşlığı"
+  },
+  {
+    "text": "Rapor ekranı sürekli donuyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sistem Performansı",
+    "expected_priority": 3,
+    "consistency_group": "Sistem yavaşlığı"
+  },
+  {
+    "text": "Sistem işlemlere geç cevap veriyor.",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sistem Performansı",
+    "expected_priority": 3,
+    "consistency_group": "Sistem yavaşlığı"
+  },
+  {
+    "text": "Bugünkü yemek çok soğuktu.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yemek Kalitesi",
+    "expected_priority": 3,
+    "consistency_group": "Yemek kalitesi"
+  },
+  {
+    "text": "Yemeklerin tadı son günlerde kötü.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yemek Kalitesi",
+    "expected_priority": 3,
+    "consistency_group": "Yemek kalitesi"
+  },
+  {
+    "text": "Çorba pişmemiş gibiydi.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yemek Kalitesi",
+    "expected_priority": 3,
+    "consistency_group": "Yemek kalitesi"
+  },
+  {
+    "text": "Yemekhane masaları kirli bırakılıyor.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Hijyen/Temizlik",
+    "expected_priority": 3,
+    "consistency_group": "Yemekhane hijyeni"
+  },
+  {
+    "text": "Tepsiler temiz görünmüyor.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Hijyen/Temizlik",
+    "expected_priority": 3,
+    "consistency_group": "Yemekhane hijyeni"
+  },
+  {
+    "text": "Yemek salonunda kötü bir koku var.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Hijyen/Temizlik",
+    "expected_priority": 3,
+    "consistency_group": "Yemekhane hijyeni"
+  },
+  {
+    "text": "Vejetaryen yemek seçeneği eklenebilir.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Menü Çeşitliliği",
+    "expected_priority": 2,
+    "consistency_group": "Menü çeşitliliği"
+  },
+  {
+    "text": "Menüde daha fazla çeşit olsa güzel olur.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Menü Çeşitliliği",
+    "expected_priority": 2,
+    "consistency_group": "Menü çeşitliliği"
+  },
+  {
+    "text": "Her gün benzer yemekler yerine alternatif sunulabilir.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Menü Çeşitliliği",
+    "expected_priority": 2,
+    "consistency_group": "Menü çeşitliliği"
+  },
+  {
+    "text": "Öğle arasında yemek sırası çok uzun.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sıra/Kalabalık",
+    "expected_priority": 3,
+    "consistency_group": "Yemekhane sırası"
+  },
+  {
+    "text": "Yoğun saatte kuyrukta fazla bekliyoruz.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sıra/Kalabalık",
+    "expected_priority": 3,
+    "consistency_group": "Yemekhane sırası"
+  },
+  {
+    "text": "Yemekhane girişinde aşırı kalabalık oluyor.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sıra/Kalabalık",
+    "expected_priority": 3,
+    "consistency_group": "Yemekhane sırası"
+  },
+  {
+    "text": "Sabah servisi yine geç geldi.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Saat/Gecikme",
+    "expected_priority": 3,
+    "consistency_group": "Servis gecikmesi"
+  },
+  {
+    "text": "Servis belirtilen saatte kalkmıyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Saat/Gecikme",
+    "expected_priority": 3,
+    "consistency_group": "Servis gecikmesi"
+  },
+  {
+    "text": "Akşam aracı sürekli gecikiyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Saat/Gecikme",
+    "expected_priority": 3,
+    "consistency_group": "Servis gecikmesi"
+  },
+  {
+    "text": "Servis durağımızdan geçmiyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güzergah/Durak",
+    "expected_priority": 3,
+    "consistency_group": "Servis güzergahı"
+  },
+  {
+    "text": "Güzergah değişti ama bilgi verilmedi.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güzergah/Durak",
+    "expected_priority": 3,
+    "consistency_group": "Servis güzergahı"
+  },
+  {
+    "text": "Araç beni yanlış durakta indirdi.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güzergah/Durak",
+    "expected_priority": 3,
+    "consistency_group": "Servis güzergahı"
+  },
+  {
+    "text": "Servis şoförü yolculara kaba davranıyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 3,
+    "consistency_group": "Şoför davranışı"
+  },
+  {
+    "text": "Şoför sorularımıza sert cevap veriyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 3,
+    "consistency_group": "Şoför davranışı"
+  },
+  {
+    "text": "Servisçi çalışanlarla tartışıyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 3,
+    "consistency_group": "Şoför davranışı"
+  },
+  {
+    "text": "Servisin kliması çalışmıyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Araç Konforu",
+    "expected_priority": 3,
+    "consistency_group": "Servis konforu"
+  },
+  {
+    "text": "Araç içi çok havasız oluyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Araç Konforu",
+    "expected_priority": 3,
+    "consistency_group": "Servis konforu"
+  },
+  {
+    "text": "Koltuklar rahatsız ve kırık.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Araç Konforu",
+    "expected_priority": 3,
+    "consistency_group": "Servis konforu"
+  },
+  {
+    "text": "Şoför kırmızı ışıkta geçti, çok tehlikeliydi.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 5,
+    "consistency_group": "Riskli servis sürüşü"
+  },
+  {
+    "text": "Servis aşırı hızlı gidiyor ve sert fren yapıyor.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 5,
+    "consistency_group": "Riskli servis sürüşü"
+  },
+  {
+    "text": "Kapı kapanmadan araç hareket etti.",
+    "selected_category": "Servis",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güvenlik/Risk",
+    "expected_priority": 5,
+    "consistency_group": "Riskli servis sürüşü"
+  },
+  {
+    "text": "Maaşım eksik yatırılmış görünüyor.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Maaş/Yan Haklar",
+    "expected_priority": 3,
+    "consistency_group": "Maaş ve yan haklar"
+  },
+  {
+    "text": "Yemek kartı bakiyem yüklenmedi.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Maaş/Yan Haklar",
+    "expected_priority": 3,
+    "consistency_group": "Maaş ve yan haklar"
+  },
+  {
+    "text": "Fazla mesai ücretim bordroda yok.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Maaş/Yan Haklar",
+    "expected_priority": 3,
+    "consistency_group": "Maaş ve yan haklar"
+  },
+  {
+    "text": "İzin talebimin sonucu görünmüyor.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İzin/Süreç Bilgilendirme",
+    "expected_priority": 3,
+    "consistency_group": "İzin süreci"
+  },
+  {
+    "text": "Yıllık izin süreci hakkında bilgi alamadım.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İzin/Süreç Bilgilendirme",
+    "expected_priority": 3,
+    "consistency_group": "İzin süreci"
+  },
+  {
+    "text": "Rapor iznim hâlâ beklemede görünüyor.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İzin/Süreç Bilgilendirme",
+    "expected_priority": 3,
+    "consistency_group": "İzin süreci"
+  },
+  {
+    "text": "Yeni çalışanlar için eğitim düzenlenebilir.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Eğitim/Gelişim",
+    "expected_priority": 2,
+    "consistency_group": "Çalışan eğitimi"
+  },
+  {
+    "text": "Mesleki gelişim eğitimleri artırılabilir.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Eğitim/Gelişim",
+    "expected_priority": 2,
+    "consistency_group": "Çalışan eğitimi"
+  },
+  {
+    "text": "Yazılım kullanımı için kısa bir eğitim iyi olur.",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Eğitim/Gelişim",
+    "expected_priority": 2,
+    "consistency_group": "Çalışan eğitimi"
+  },
+  {
+    "text": "Ofis çok sıcak olduğu için çalışmak zorlaşıyor.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Isıtma/Soğutma",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma alanı sıcaklığı"
+  },
+  {
+    "text": "Klima odayı aşırı soğutuyor.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Isıtma/Soğutma",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma alanı sıcaklığı"
+  },
+  {
+    "text": "Çalışma alanının sıcaklığı gün içinde çok değişiyor.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Isıtma/Soğutma",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma alanı sıcaklığı"
+  },
+  {
+    "text": "Ofisteki gürültü odaklanmamı engelliyor.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Gürültü",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma alanı gürültüsü"
+  },
+  {
+    "text": "Makine sesi gün boyu çok rahatsız ediyor.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Gürültü",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma alanı gürültüsü"
+  },
+  {
+    "text": "Yan masalardaki ses yüzünden çalışamıyorum.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Gürültü",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma alanı gürültüsü"
+  },
+  {
+    "text": "Sandalyem bel ağrısı yapıyor.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Ergonomi",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma ergonomisi"
+  },
+  {
+    "text": "Masa yüksekliği çalışmaya uygun değil.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Ergonomi",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma ergonomisi"
+  },
+  {
+    "text": "Ekran konumu boynumu ağrıtıyor.",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Ergonomi",
+    "expected_priority": 3,
+    "consistency_group": "Çalışma ergonomisi"
+  },
+  {
+    "text": "Tuvaletlerde sabun kalmamış.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Tuvalet/Sarf Malzeme",
+    "expected_priority": 3,
+    "consistency_group": "Tuvalet sarf malzemesi"
+  },
+  {
+    "text": "Lavaboda peçete bulunmuyor.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Tuvalet/Sarf Malzeme",
+    "expected_priority": 3,
+    "consistency_group": "Tuvalet sarf malzemesi"
+  },
+  {
+    "text": "Tuvalet kağıtları gün içinde tükeniyor.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Tuvalet/Sarf Malzeme",
+    "expected_priority": 3,
+    "consistency_group": "Tuvalet sarf malzemesi"
+  },
+  {
+    "text": "Personel otoparkında yer bulamıyoruz.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Otopark",
+    "expected_priority": 3,
+    "consistency_group": "Otopark sorunu"
+  },
+  {
+    "text": "Otopark girişinde araçlar yolu kapatıyor.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Otopark",
+    "expected_priority": 3,
+    "consistency_group": "Otopark sorunu"
+  },
+  {
+    "text": "Park alanı çizgileri görünmüyor.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Otopark",
+    "expected_priority": 3,
+    "consistency_group": "Otopark sorunu"
+  },
+  {
+    "text": "Asansör sık sık katta kalıyor.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Asansör/Merdiven",
+    "expected_priority": 3,
+    "consistency_group": "Asansör merdiven sorunu"
+  },
+  {
+    "text": "Merdiven korkuluğu gevşemiş.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Asansör/Merdiven",
+    "expected_priority": 3,
+    "consistency_group": "Asansör merdiven sorunu"
+  },
+  {
+    "text": "Asansör kapısı düzgün kapanmıyor.",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Asansör/Merdiven",
+    "expected_priority": 3,
+    "consistency_group": "Asansör merdiven sorunu"
+  },
+  {
+    "text": "Koridorda açıkta kablo var, biri düşebilir.",
+    "selected_category": "Güvenlik",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Fiziksel Risk",
+    "expected_priority": 5,
+    "consistency_group": "Fiziksel güvenlik riski"
+  },
+  {
+    "text": "Zemin ıslak ve kayma tehlikesi oluşturuyor.",
+    "selected_category": "Güvenlik",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Fiziksel Risk",
+    "expected_priority": 5,
+    "consistency_group": "Fiziksel güvenlik riski"
+  },
+  {
+    "text": "Raf devrilecek gibi duruyor, alan riskli.",
+    "selected_category": "Güvenlik",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Fiziksel Risk",
+    "expected_priority": 5,
+    "consistency_group": "Fiziksel güvenlik riski"
+  },
+  {
+    "text": "Onay adımları daha sade hale getirilebilir.",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Süreç İyileştirme",
+    "expected_priority": 2,
+    "consistency_group": "Süreç iyileştirme önerisi"
+  },
+  {
+    "text": "Tekrarlanan formlar tek ekranda birleştirilebilir.",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Süreç İyileştirme",
+    "expected_priority": 2,
+    "consistency_group": "Süreç iyileştirme önerisi"
+  },
+  {
+    "text": "Talep süreci dijitalleştirilirse daha hızlı olur.",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "CONSISTENCY",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Süreç İyileştirme",
+    "expected_priority": 2,
+    "consistency_group": "Süreç iyileştirme önerisi"
   }
 ]

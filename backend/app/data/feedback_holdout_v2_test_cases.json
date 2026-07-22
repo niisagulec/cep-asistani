@@ -1,0 +1,286 @@
+[
+  {
+    "text": "tavukların içi pembe kalmış birkaç kişi yemekten sonra midesinin bulandığını söyledi",
+    "selected_category": "Yemekhane",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yemek Kalitesi",
+    "expected_priority": 5
+  },
+  {
+    "text": "çatal ve tabaklarda önceki yemekten kalıntılar duruyor",
+    "selected_category": "Yemekhane",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Hijyen/Temizlik",
+    "expected_priority": 3
+  },
+  {
+    "text": "bu hafta da geçen haftayla neredeyse aynı yemekler çıktı",
+    "selected_category": "Yemekhane",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Menü Çeşitliliği",
+    "expected_priority": 3
+  },
+  {
+    "text": "yemek dağıtan görevli soru sorunca tersleyip sesini yükseltiyor",
+    "selected_category": "Yemekhane",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Personel Davranışı",
+    "expected_priority": 3
+  },
+  {
+    "text": "araç bizim mahalleye girmeden ana caddeden devam edip durağı atlıyor",
+    "selected_category": "Servis",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güzergah/Durak",
+    "expected_priority": 3
+  },
+  {
+    "text": "kaptan sürerken sürekli whatsapp mesajlarına bakıyor",
+    "selected_category": "Servis",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Şoför Davranışı",
+    "expected_priority": 5
+  },
+  {
+    "text": "arka taraftaki klima sadece sıcak hava üflüyor içerisi nefes alınmaz oluyor",
+    "selected_category": "Servis",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Araç Konforu",
+    "expected_priority": 3
+  },
+  {
+    "text": "akşam aracı planlanan saati geçtiği halde fabrikaya gelmedi",
+    "selected_category": "Servis",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Saat/Gecikme",
+    "expected_priority": 3
+  },
+  {
+    "text": "excel dosyası kaydet tuşuna basınca kapanıp yaptıklarımı siliyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Yazılım Sorunu",
+    "expected_priority": 3
+  },
+  {
+    "text": "satın alma ekranını açma iznim kaldırılmış işlem yapamıyorum",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Erişim/Yetki Sorunu",
+    "expected_priority": 3
+  },
+  {
+    "text": "toplantı başlayınca kablosuz bağlantı gidip geliyor görüntü sürekli donuyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İnternet/Ağ Sorunu",
+    "expected_priority": 3
+  },
+  {
+    "text": "bilgisayarın fanı çok ses yapıyor ve cihaz kendi kendine yeniden başlıyor",
+    "selected_category": "Teknik Destek",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Donanım Sorunu",
+    "expected_priority": 3
+  },
+  {
+    "text": "prim tutarı bordroda görünmesine rağmen hesabıma yatmamış",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Maaş/Yan Haklar",
+    "expected_priority": 3
+  },
+  {
+    "text": "raporlu olduğum gün hâlâ devamsızlık olarak görünüyor kime iletmeliyim",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İzin/Süreç Bilgilendirme",
+    "expected_priority": 3
+  },
+  {
+    "text": "yeni makineyi kullanacak ekip için uygulamalı eğitim planlanabilir",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Eğitim/Gelişim",
+    "expected_priority": 2
+  },
+  {
+    "text": "resmi tatilde çalışılacağı bize bir gece önce söylendi",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İletişim/Bilgilendirme",
+    "expected_priority": 3
+  },
+  {
+    "text": "mola alanında oturacak bank sayısı vardiyaya yetmiyor",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Dinlenme Alanı",
+    "expected_priority": 3
+  },
+  {
+    "text": "lavabolarda tuvalet kağıdı dispenserleri sabahtan beri boş",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Tuvalet/Sarf Malzeme",
+    "expected_priority": 3
+  },
+  {
+    "text": "yük asansörü kat seçtikten sonra ters kata gidiyor",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Asansör/Merdiven",
+    "expected_priority": 3
+  },
+  {
+    "text": "otopark çizgileri yenilenirse araçlar daha düzenli bırakılabilir",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Otopark",
+    "expected_priority": 2
+  },
+  {
+    "text": "acil yönlendirme lambası yanmıyor çıkışın nerede olduğu görünmüyor",
+    "selected_category": "Güvenlik",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Acil Durum/Ekipman",
+    "expected_priority": 5
+  },
+  {
+    "text": "ziyaretçiler turnikede başka birinin kartıyla peş peşe geçiyor",
+    "selected_category": "Güvenlik",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Giriş-Çıkış/Güvenlik Kontrolü",
+    "expected_priority": 3
+  },
+  {
+    "text": "koridorun ortasına yağ dökülmüş yürürken ayağımız kayıyor",
+    "selected_category": "Güvenlik",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Fiziksel Risk",
+    "expected_priority": 5
+  },
+  {
+    "text": "forklift geri giderken ikaz sesi çıkarmıyor çalışanlar fark etmiyor",
+    "selected_category": "Güvenlik",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "İş Güvenliği Riski",
+    "expected_priority": 5
+  },
+  {
+    "text": "monitöre tavandaki ışık vurduğu için ekrandaki yazılar seçilmiyor",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Aydınlatma",
+    "expected_priority": 3
+  },
+  {
+    "text": "sandalyenin kolu çok yukarıda bütün gün omzumu zorluyor",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Ergonomi",
+    "expected_priority": 3
+  },
+  {
+    "text": "kompresörün uğultusu yüzünden telefonda konuşulanı anlayamıyoruz",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Gürültü",
+    "expected_priority": 3
+  },
+  {
+    "text": "aynı odada sekiz kişi çalışıyoruz masalar arasında geçecek yer kalmadı",
+    "selected_category": "Çalışma Ortamı",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Alan Yetersizliği",
+    "expected_priority": 3
+  },
+  {
+    "text": "harcama onayları tek form üzerinden ilerleyecek şekilde sadeleştirilebilir",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Süreç İyileştirme",
+    "expected_priority": 2
+  },
+  {
+    "text": "sık sorulan sorulara cevap veren şirket içi asistan geliştirilebilir",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Teknolojik İyileştirme",
+    "expected_priority": 2
+  },
+  {
+    "text": "ekiplerin tanışması için dönem başında küçük bir piknik yapılabilir",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Sosyal Etkinlik",
+    "expected_priority": 2
+  },
+  {
+    "text": "yoğun günlerde mola saatini ekiplerin kendi arasında ayarlaması çalışanları rahatlatır",
+    "selected_category": "Öneri ve İyileştirme",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Çalışan Deneyimi",
+    "expected_priority": 2
+  },
+  {
+    "text": "yazıcı kağıdı çekiyor ama çıktı vermeden hata ışığı yakıyor",
+    "selected_category": "Yemekhane",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Teknik Destek"
+  },
+  {
+    "text": "çorbanın içinden böcek çıktı mutfağın kontrol edilmesi gerekiyor",
+    "selected_category": "Servis",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Yemekhane"
+  },
+  {
+    "text": "maaş farkım iki aydır ödenmedi bordroda da açıklama yok",
+    "selected_category": "Ortak Alan",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "İK / Personel İşleri"
+  },
+  {
+    "text": "personel otoparkında engelli araçları için ayrılmış bölüm bulunmuyor",
+    "selected_category": "İK / Personel İşleri",
+    "expected_stage": "HOLDOUT_V2",
+    "expected_action": "SUGGEST_CATEGORY_CHANGE",
+    "expected_category": "Ortak Alan"
+  }
+]

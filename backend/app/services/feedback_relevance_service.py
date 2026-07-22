@@ -177,6 +177,11 @@ FEEDBACK_SIGNAL_KEYWORDS = [
     "bordro",
     "maaş",
     "maas",
+    "yan hak",
+    "hediye çeki",
+    "hediye ceki",
+    "geçersiz kod",
+    "gecersiz kod",
     "bahçe",
     "bahce",
     "çardak",
@@ -225,6 +230,15 @@ UNCERTAIN_CONTEXT_PHRASES = {
     "bugun yine ayni",
     "bu sorun yine oldu",
 }
+
+STRONG_FEEDBACK_PROBLEM_PHRASES = (
+    "geçersiz kod",
+    "gecersiz kod",
+    "hediye çeki çalışmıyor",
+    "hediye ceki calismiyor",
+    "çek kullanılamıyor",
+    "cek kullanilamiyor",
+)
 
 
 @dataclass
@@ -387,6 +401,17 @@ def analyze_feedback_relevance(message: str) -> FeedbackRelevanceResult:
             confidence=0.45,
             needs_manual_review=True,
             reason="Mesaj geri bildirim olabilir ancak bağlam açısından yetersiz.",
+        )
+
+    if any(
+        problem_phrase in normalized_message
+        for problem_phrase in STRONG_FEEDBACK_PROBLEM_PHRASES
+    ):
+        return FeedbackRelevanceResult(
+            label=FEEDBACK_LABEL,
+            confidence=0.90,
+            needs_manual_review=False,
+            reason="Mesaj açık bir kurumsal sorun bildirimi içeriyor.",
         )
 
     model_result = predict_feedback_relevance_with_model(normalized_message)

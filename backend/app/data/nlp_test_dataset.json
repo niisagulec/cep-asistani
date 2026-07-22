@@ -25,10 +25,10 @@
 "Yemekhane çıkışına taze meyve veya sağlıklı atıştırmalık köşesi eklenmesi motivasyonu artırabilir." }, { "category": "Yemekhane", "expected_detail":
 "Personel Davranışı", "tone": "DILEK_ONERI", "expected_priority": 2, "text":
 "Servis personelinin yoğun saatlerde daha sakin kalabilmesi için iletişim eğitimi verilmesini öneriyoruz." }, { "category": "Servis", "expected_detail":
-"Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoför aracı aşırı hızlı ve tehlikeli kullanıyor, kaza yapmamız an meselesi; acil müdahale edilmeli." }, { "category": "Servis", "expected_detail":
+"Şoför Davranışı", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoför aracı aşırı hızlı ve tehlikeli kullanıyor, kaza yapmamız an meselesi; acil müdahale edilmeli." }, { "category": "Servis", "expected_detail":
 "Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Aracın frenlerinden çok kötü sesler geliyor ve durmakta zorlanıyor, bu aracın trafiğe çıkması riskli." }, { "category": "Servis", "expected_detail": "Şoför Davranışı", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoförün uykusuz ve bitkin olduğu gözleniyor, direksiyon başında uyuklaması hepimizin canını tehlikeye atıyor." }, { "category": "Servis", "expected_detail":
 "Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Servis aracının otomatik kapısı hareket halindeyken kendiliğinden açılıyor, ciddi bir düşme tehlikesi var." }, { "category": "Servis", "expected_detail":
-"Güvenlik/Risk", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoför seyir halindeyken sürekli telefonla video izliyor, dikkati tamamen dağılmış durumda; kontrol edilmeli." }, { "category": "Servis", "expected_detail":
+"Şoför Davranışı", "tone": "ACIL_TEHLIKE", "expected_priority": 5, "text": "Şoför seyir halindeyken sürekli telefonla video izliyor, dikkati tamamen dağılmış durumda; kontrol edilmeli." }, { "category": "Servis", "expected_detail":
 "Saat/Gecikme", "tone": "STANDART_SIKAYET", "expected_priority": 3, "text":
 "Sabah servisi her gün en az 15 dakika geç geliyor ve bu durum mesai saatlerimizi aksatıyor." }, { "category": "Servis", "expected_detail": "Araç Konforu", "tone": "STANDART_SIKAYET", "expected_priority": 3, "text": "Aracın kliması çalışmıyor, bu sıcaklarda yolculuk yapmak dayanılmaz hale geldi." }, {
 "category": "Servis", "expected_detail": "Güzergah/Durak", "tone":
