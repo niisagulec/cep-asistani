@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Easing, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Animated, Easing, Image, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -19,6 +19,8 @@ import { registerDeviceToken, deregisterDeviceToken, getUnreadNotificationsCount
 import { registerBackgroundFetchAsync, unregisterBackgroundFetchAsync } from './src/services/backgroundFetchService';
 import * as Notifications from 'expo-notifications';
 
+const LOGIN_LOGO_SOURCE = require('./assets/logo.png');
+
 export default function App() {
   return (
     <SafeAreaProvider>
@@ -34,6 +36,7 @@ function MainApp() {
   const [searchText, setSearchText] = useState('');
   const [currentUser, setCurrentUser] = useState(null);
   const [isSessionLoading, setIsSessionLoading] = useState(true);
+  const [isLogoutCleaning, setIsLogoutCleaning] = useState(false);
   const [selectedModule, setSelectedModule] = useState(null);
   const [unreadCount, setUnreadCount] = useState(0);
   const screenTransition = useRef(new Animated.Value(1)).current;
@@ -176,14 +179,22 @@ function MainApp() {
   }, [searchText]);
 
   async function handleLogout() {
-    await deregisterDeviceToken().catch(() => {});
-    await unregisterBackgroundFetchAsync().catch(() => {});
-    await logout();
-    clearMobileCache();
+    if (isLogoutCleaning) return;
+
+    setIsLogoutCleaning(true);
     setCurrentUser(null);
     setActiveTab('home');
     setSearchText('');
     setSelectedModule(null);
+
+    try {
+      await deregisterDeviceToken().catch(() => {});
+      await unregisterBackgroundFetchAsync().catch(() => {});
+      await logout();
+      clearMobileCache();
+    } finally {
+      setIsLogoutCleaning(false);
+    }
   }
 
   async function refreshCurrentUser() {
@@ -253,6 +264,7 @@ function MainApp() {
       <>
         <StatusBar style={isDark ? 'light' : 'dark'} />
         <LoginScreen
+          isLoginDisabled={isLogoutCleaning}
           onLoginSuccess={({ currentUser: loggedInUser }) => {
             setCurrentUser(loggedInUser);
             setActiveTab('home');
@@ -280,6 +292,7 @@ function MainApp() {
   return (
     <View style={styles.appShell}>
       <StatusBar style={isDark ? 'light' : 'dark'} />
+      <Image source={LOGIN_LOGO_SOURCE} style={styles.preloadedLoginLogo} />
 
       <Animated.View
         style={[
@@ -335,6 +348,12 @@ const getStyles = (colors) => StyleSheet.create({
   appShell: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  preloadedLoginLogo: {
+    position: 'absolute',
+    width: 1,
+    height: 1,
+    opacity: 0,
   },
   activeScreen: {
     flex: 1,

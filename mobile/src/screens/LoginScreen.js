@@ -18,7 +18,7 @@ import { getApiErrorMessage } from '../services/api';
 import { getCurrentUser, login } from '../services/authService';
 import { useTheme } from '../context/ThemeContext';
 
-export function LoginScreen({ onLoginSuccess }) {
+export function LoginScreen({ isLoginDisabled = false, onLoginSuccess }) {
   const { colors } = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
   const insets = useSafeAreaInsets();
@@ -30,6 +30,8 @@ export function LoginScreen({ onLoginSuccess }) {
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async () => {
+    if (isLoginDisabled) return;
+
     const trimmedEmail = email.trim();
 
     if (!trimmedEmail || !password) {
@@ -110,11 +112,14 @@ export function LoginScreen({ onLoginSuccess }) {
 
             <TouchableOpacity
               activeOpacity={0.85}
-              disabled={isSubmitting}
+              disabled={isSubmitting || isLoginDisabled}
               onPress={handleLogin}
-              style={[styles.loginButton, isSubmitting ? styles.disabledButton : null]}
+              style={[
+                styles.loginButton,
+                isSubmitting || isLoginDisabled ? styles.disabledButton : null,
+              ]}
             >
-              {isSubmitting ? (
+              {isSubmitting || isLoginDisabled ? (
                 <ActivityIndicator color="#FFFFFF" />
               ) : (
                 <Text style={styles.loginButtonText}>Giriş Yap</Text>
