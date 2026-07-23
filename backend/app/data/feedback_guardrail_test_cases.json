@@ -942,5 +942,43 @@
     "expected_detail_behavior": "Süreç İyileştirme",
     "expected_priority": 2,
     "consistency_group": "Süreç iyileştirme önerisi"
+  },
+  {
+    "text": "Servisin kapısı bozuk ve kapanmıyor.",
+    "selected_category": "Servis",
+    "expected_stage": "MANUAL_REGRESSION",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güvenlik/Risk",
+    "expected_priority": 5
+  },
+  {
+    "text": "Servise korkarak biniyoruz, kapısı kapanmıyor ve şoför de hız yapıyor.",
+    "selected_category": "Servis",
+    "expected_stage": "MANUAL_REGRESSION",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güvenlik/Risk",
+    "expected_priority": 5
+  },
+  {
+    "text": "Her gün tatlı çıkmasını isterdim.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "MANUAL_REGRESSION",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Menü Çeşitliliği"
+  },
+  {
+    "text": "Hergün tatlı çıksın isterdim.",
+    "selected_category": "Yemekhane",
+    "expected_stage": "MANUAL_REGRESSION",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Menü Çeşitliliği"
+  },
+  {
+    "text": "Servisin kapısı bozuk, kapanmıyo.",
+    "selected_category": "Servis",
+    "expected_stage": "MANUAL_REGRESSION",
+    "expected_action": "ACCEPT",
+    "expected_detail_behavior": "Güvenlik/Risk",
+    "expected_priority": 5
   }
 ]

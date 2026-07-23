@@ -14,11 +14,14 @@ TURKISH_VOWELS = "aeıioöuü"
 MESSAGE_TOKEN_NORMALIZATIONS = {
     "int": "internet",
     "srvs": "servis",
+    "hergün": "her gün",
     "klıma": "klima",
     "calsmıyo": "çalışmıyor",
     "calismiyo": "çalışmıyor",
     "acmıyo": "açmıyor",
     "acilmiyo": "açılmıyor",
+    "kapanmıyo": "kapanmıyor",
+    "kapanmiyo": "kapanmıyor",
     "ymkten": "yemekten",
     "hla": "hâlâ",
     "maas": "maaş",
@@ -436,7 +439,16 @@ def normalize_message(message: str) -> str:
     lowered_message = message.lower().replace("i̇", "i")
     lowered_message = re.sub(r"(.)\1{2,}", r"\1\1", lowered_message)
     words = lowered_message.strip().split()
-    normalized_words = [MESSAGE_TOKEN_NORMALIZATIONS.get(word, word) for word in words]
+    normalized_words = []
+    surrounding_punctuation = ".,!?;:()[]{}\"'"
+
+    for word in words:
+        core_word = word.strip(surrounding_punctuation)
+        normalized_core = MESSAGE_TOKEN_NORMALIZATIONS.get(core_word, core_word)
+        normalized_words.append(
+            word.replace(core_word, normalized_core, 1) if core_word else word
+        )
+
     return " ".join(normalized_words)
 
 

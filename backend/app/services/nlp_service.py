@@ -330,6 +330,10 @@ VEHICLE_MECHANICAL_RISK_KEYWORDS = [
     "kapi kapanmadan",
     "kapısı tam kapanm",
     "kapisi tam kapanm",
+    "kapısı kapanmıyor",
+    "kapisi kapanmiyor",
+    "kapı kapanmıyor",
+    "kapi kapanmiyor",
     "otomatik kapı",
     "otomatik kapi",
     "frenlerinden",
@@ -775,6 +779,14 @@ CAFETERIA_MENU_VARIETY_KEYWORDS = [
     "daha fazla çeşit",
     "daha fazla cesit",
     "salata bar",
+    "çıkmasını ister",
+    "cikmasini ister",
+    "çıksın ister",
+    "ciksin ister",
+    "daha sık çıksın",
+    "daha sik ciksin",
+    "menüye ekle",
+    "menuye ekle",
 ]
 
 SHUTTLE_DELAY_KEYWORDS = [
@@ -1140,7 +1152,31 @@ def is_driver_behavior_message(message: str) -> bool:
     ) and contains_any_keyword(message, DRIVER_BEHAVIOR_KEYWORDS)
 
 
+def is_vehicle_door_closure_risk(message: str) -> bool:
+    return contains_any_keyword(
+        message,
+        ["kapı", "kapi"],
+    ) and contains_any_keyword(
+        message,
+        [
+            "kapanmıyor",
+            "kapanmiyor",
+            "tam kapanm",
+            "açık kal",
+            "acik kal",
+        ],
+    )
+
+
 def calculate_message_priority_score(message: str, category_name: str) -> int:
+    message = normalize_message(message)
+
+    if category_name == "Servis" and (
+        contains_any_keyword(message, VEHICLE_MECHANICAL_RISK_KEYWORDS)
+        or is_vehicle_door_closure_risk(message)
+    ):
+        return 5
+
     if category_name == "Çalışma Ortamı" and contains_any_keyword(
         message,
         WORKPLACE_NOISE_KEYWORDS,
@@ -1221,9 +1257,9 @@ def apply_rule_based_overrides(
 ) -> tuple[str, float]:
     message = normalize_message(message)
 
-    if category_name == "Servis" and contains_any_keyword(
-        message,
-        VEHICLE_MECHANICAL_RISK_KEYWORDS,
+    if category_name == "Servis" and (
+        contains_any_keyword(message, VEHICLE_MECHANICAL_RISK_KEYWORDS)
+        or is_vehicle_door_closure_risk(message)
     ):
         return "Güvenlik/Risk", adjusted_rule_confidence(
             nlp_detail,
